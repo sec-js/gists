@@ -1,0 +1,79 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "server": {
+    "port": 39393,
+    "hostname": "127.0.0.1",
+    "cors": [
+      "https://code.ylxdzsw.com"
+    ]
+  },
+  "model": "volcengine-coding/doubao-seed-2.0-code",
+  "small_model": "github-copilot/gpt-5-mini",
+  "default_agent": "plan",
+  "provider": {
+    "volcengine-coding": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Volcengine CodingPlan",
+      "options": {
+        "baseURL": "https://ark.cn-beijing.volces.com/api/coding/v3",
+        "apiKey": "{env:VOLCENGINE_API_KEY}"
+      },
+      "models": {
+        "doubao-seed-2.0-code": {
+          "name": "Seed Code 2.0",
+          "attachment": true,
+          "reasoning": true,
+          "tool_call": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 256000,
+            "output": 128000
+          }
+        },
+        "kimi-k2.5": {
+          "name": "Kimi K2.5",
+          "attachment": true,
+          "reasoning": true,
+          "tool_call": true,
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "limit": {
+            "context": 256000,
+            "output": 128000
+          }
+        }
+      }
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "gh_grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app"
+    },
+    "exa": {
+      "type": "remote",
+      "url": "https://mcp.exa.ai/mcp?tools=web_search_exa"
+    }
+  }
+}
