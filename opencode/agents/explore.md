@@ -1,6 +1,6 @@
 ---
 description: A fast, cheap, long-context model specialized for scaning local codebases or online research.
-model: openrouter/stepfun/step-3.5-flush:free
+model: openrouter/stepfun/step-3.5-flash:free
 temperature: 1.0
 top_p: 0.95
 permission:
