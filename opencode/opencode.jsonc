@@ -21,9 +21,6 @@
       "models": {
         "doubao-seed-2.0-code": {
           "name": "Seed Code 2.0",
-          "attachment": true,
-          "reasoning": true,
-          "tool_call": true,
           "modalities": {
             "input": [
               "text",
@@ -41,9 +38,6 @@
         },
         "kimi-k2.5": {
           "name": "Kimi K2.5",
-          "attachment": true,
-          "reasoning": true,
-          "tool_call": true,
           "modalities": {
             "input": [
               "text",
@@ -61,6 +55,12 @@
         }
       }
     }
+  },
+  "permission": {
+    "*": "allow",
+    "doom_loop": "ask",
+    "external_directory": "ask",
+    "plan*": "deny"
   },
   "mcp": {
     "context7": {
