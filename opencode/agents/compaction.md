@@ -1,7 +1,5 @@
 ---
 model: openrouter/stepfun/step-3.5-flush:free
-temperature: 1.0
-top_p: 0.95
 permission:
     "*": deny
 ---

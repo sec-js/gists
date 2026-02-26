@@ -1,4 +1,0 @@
----
-temperature: 1.0
-top_p: 0.95
----
