@@ -47,6 +47,10 @@
             "output": [
               "text"
             ]
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
           }
         }
       }
@@ -95,11 +99,24 @@
         },
         "MiniMax-M2.5": {
           "name": "MiniMax M2.5",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
           "options": {
             "thinking": {
               "type": "enabled",
               "budgetTokens": 1024
             }
+          },
+          "limit": {
+            "context": 262144,
+            "output": 131072
           }
         },
         "glm-5": {
@@ -109,6 +126,10 @@
               "type": "enabled",
               "budgetTokens": 1024
             }
+          },
+          "limit": {
+            "context": 204800,
+            "output": 131072
           }
         },
         "kimi-k2.5": {
@@ -127,6 +148,10 @@
               "type": "enabled",
               "budgetTokens": 1024
             }
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
           }
         }
       }
