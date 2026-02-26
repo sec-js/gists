@@ -7,12 +7,12 @@
       "https://code.ylxdzsw.com"
     ]
   },
-  "model": "volcengine-coding/doubao-seed-2.0-code",
+  "model": "bailian-coding-plan/qwen3.5-plus",
   "small_model": "github-copilot/gpt-5-mini",
   "default_agent": "plan",
   "share": "disabled",
   "provider": {
-    "volcengine-coding": {
+    "volcengine-coding-plan": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Volcengine CodingPlan",
       "options": {
