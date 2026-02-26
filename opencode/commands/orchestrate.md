@@ -14,7 +14,7 @@ You always follow this workflow and let user know which step you are at.
 For complex tasks, split into multiple phases, each with clear accept criteria. For each phase:
 4. Plan: planning the execution of this phase. Try split into independent tasks that can be executed concurrently.
 5. Execute: use subagents to execute the plan.
-6. Verify: review the execution and check if the result meet the accept criteria, go back to step 4 to plan a fix if failed.
+6. Verify (important!): review the execution and check if the result meet the accept criteria, go back to step 4 to plan a fix if failed.
 </Workflow>
 
 <Guidelines>
