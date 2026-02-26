@@ -36,6 +36,18 @@
             "context": 256000,
             "output": 128000
           }
+        },
+        "kimi-k2.5": {
+          "name": "Kimi K2.5",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
         }
       }
     },
@@ -63,10 +75,23 @@
               "type": "enabled",
               "budgetTokens": 1024
             }
+          },
+          "limit": {
+            "context": 983616,
+            "output": 65536
           }
         },
         "qwen3-max-2026-01-23": {
-          "name": "Qwen3 Max"
+          "name": "Qwen3 Max",
+          "options": {
+            "thinking": {
+              "type": "enabled"
+            }
+          },
+          "limit": {
+            "context": 262144,
+            "output": 32768
+          }
         },
         "MiniMax-M2.5": {
           "name": "MiniMax M2.5",
