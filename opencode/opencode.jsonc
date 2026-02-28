@@ -81,7 +81,7 @@
             }
           },
           "limit": {
-            "context": 983616,
+            "context": 1000000,
             "output": 65536
           }
         },
@@ -103,8 +103,8 @@
             }
           },
           "limit": {
-            "context": 262144,
-            "output": 131072
+            "context": 1000000,
+            "output": 65536
           }
         },
         "glm-5": {
@@ -116,8 +116,8 @@
             }
           },
           "limit": {
-            "context": 204800,
-            "output": 131072
+            "context": 202752,
+            "output": 16384
           }
         },
         "kimi-k2.5": {

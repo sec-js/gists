@@ -1,6 +1,6 @@
 ---
-description: A fast, cheap, long-context model specialized for scaning local codebases or online research.
-model: openrouter/stepfun/step-3.5-flash:free
+description: A long-context model specialized for scaning local codebases or online research.
+model: bailian-coding-plan/qwen3.5-plus
 permission:
     edit: deny
     bash: deny
