@@ -1,6 +1,5 @@
 ---
-description: A long-context model specialized for scaning local codebases or online research.
-model: bailian-coding-plan/qwen3.5-plus
+description: Read-only subagent specialized for scaning local codebases or online research.
 permission:
     edit: deny
     bash: deny
