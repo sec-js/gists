@@ -85,18 +85,6 @@
             "output": 65536
           }
         },
-        "qwen3-max-2026-01-23": {
-          "name": "Qwen3 Max",
-          "options": {
-            "thinking": {
-              "type": "enabled"
-            }
-          },
-          "limit": {
-            "context": 262144,
-            "output": 32768
-          }
-        },
         "MiniMax-M2.5": {
           "name": "MiniMax M2.5",
           "modalities": {
@@ -168,8 +156,5 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp"
     }
-  },
-  "experimental": {
-    "batch_tool": true
   }
 }
