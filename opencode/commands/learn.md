@@ -10,10 +10,10 @@ Append concise notes (at most 3 sentences each) to project AGENTS.md for any les
 Findings MUST be captured from non-obvious fixes or decisions. Avoid trivial lessons.
 </Task>
 
-<rules>
+<Rules>
 - Be extremely concise (1-2 lines of new content).
 - Find or add appropriate sections in the document to add the nodes.
 - Match existing documentation style
 - Focus on "how to avoid this issue next time."
 - MUST NOT use generic preambles or repeat info.
-</rules>
+</Rules>

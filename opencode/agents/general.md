@@ -1,3 +1,3 @@
 ---
-description: General-purpose subagent with the same model and permission of the primary agent.
+description: General-purpose subagent with the same model and tools of the primary agent.
 ---

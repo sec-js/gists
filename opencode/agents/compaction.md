@@ -1,5 +1,5 @@
 ---
-model: openrouter/stepfun/step-3.5-flush:free
+model: openrouter/stepfun/step-3.5-flash:free
 permission:
     "*": deny
 ---
