@@ -1,6 +1,7 @@
 ---
 description: Read-only subagent backed by a strong reasoning model.
 model: bailian-coding-plan/glm-5
+mode: subagent
 permission:
     "*": deny
     bash: ask
