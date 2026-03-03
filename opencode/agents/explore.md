@@ -1,5 +1,6 @@
 ---
 description: Read-only subagent specialized for scaning local codebases or online research.
+model: openrouter/stepfun/step-3.5-flush:free
 permission:
     edit: deny
     bash: deny
