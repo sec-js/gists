@@ -1,5 +1,9 @@
 ---
 permission:
+    "*": allow
+    "plan*": deny
+    doom_loop: ask
+    external_directory: ask
     edit: deny
 ---
 

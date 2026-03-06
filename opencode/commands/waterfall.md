@@ -29,7 +29,7 @@ Next Step:
 
 ## Step 4: Plan a Phase
 
-Task: Use research agent to plan the detailed execusion of a phase.
+Task: Use research agent to plan the detailed execution of a phase.
 Input: Concise rephrasing of user's request, related collected information, and objective of this phase.
 Output: Concret phase plan
 
@@ -53,7 +53,7 @@ Output: Execution summary.
 
 Task: Use general agent to review the execution.
 Input: Concise rephrasing of user's request, related collected information, objective of this phase, and the phase plan.
-Output: Whether the execusion is COMPLETE.
+Output: Whether the execution is COMPLETE.
 Next Step:
     If not COMPLETE: provide feedback to the last session to refine the implementation, and review again.
     If COMPLETE: go to step 4 for the next phase, or step 8 if all phases are finished.
@@ -61,5 +61,11 @@ Next Step:
 ## Step 8: Final Report
 
 Evaluate the final result against the original user request, and report to the user.
+
+## Guidelines
+
+1. Include complete context in inputs to subagents: subagents starts fresh and does not see your conversation history.
+2. Maintain task_id (starts with "ses_") for resuming. When a review step gives REVISE, provide feedback to the same session by setting task_id. When resuming, do not repeat "You are XYZ" preamble. When a review gives REJECT, do not provide task_id and let it starts a new session.
+3. Be very detailed when talking to subagents: include raw plan created for execution without summarization, include raw feedback for REVISE without summarization, include overview of the architecture  
 
 ## User Request

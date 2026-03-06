@@ -138,12 +138,6 @@
       }
     }
   },
-  "permission": {
-    "*": "allow",
-    "doom_loop": "ask",
-    "external_directory": "ask",
-    "plan*": "deny"
-  },
   "mcp": {
     "context7": {
       "type": "remote",
