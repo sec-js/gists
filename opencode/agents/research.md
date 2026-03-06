@@ -4,6 +4,9 @@ model: bailian-coding-plan/glm-5
 mode: subagent
 permission:
     "*": deny
+    edit:
+        "*": deny
+        "plan/*.md": allow
     bash: ask
     external_directory: ask
     read: allow
@@ -15,4 +18,3 @@ permission:
     codesearch: allow
     "context7*": allow
 ---
-

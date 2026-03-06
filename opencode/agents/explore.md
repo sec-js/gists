@@ -3,6 +3,9 @@ description: Fast, cheap, read-only subagent specialized for scaning local codeb
 model: openrouter/stepfun/step-3.5-flash:free
 permission:
     "*": deny
+    edit:
+        "*": deny
+        "plan/*.md": allow
     bash: ask
     external_directory: ask
     read: allow
