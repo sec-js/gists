@@ -1,6 +1,5 @@
 ---
 description: Fast, cheap, read-only subagent specialized for scaning local codebases and researching online resources.
-model: openrouter/stepfun/step-3.5-flash:free
 permission:
     "*": deny
     edit:

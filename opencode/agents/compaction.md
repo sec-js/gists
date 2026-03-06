@@ -1,5 +1,4 @@
 ---
-model: openrouter/stepfun/step-3.5-flash:free
 permission:
     "*": deny
 ---
