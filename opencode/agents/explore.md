@@ -4,7 +4,7 @@ permission:
     "*": deny
     edit:
         "*": deny
-        "plan/*.md": allow
+        "**/plan/*.md": allow
     bash: ask
     external_directory: ask
     read: allow
