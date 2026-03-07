@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "bailian-coding-plan/qwen3.5-plus",
+  "model": "volcengine-coding-plan/doubao-seed-2.0-pro",
   "small_model": "github-copilot/gpt-5-mini",
   "default_agent": "plan",
   "share": "disabled",
@@ -13,37 +13,37 @@
         "apiKey": "{env:VOLCENGINE_API_KEY}"
       },
       "models": {
-        "doubao-seed-2.0-code": {
-          "name": "Seed Code 2.0",
+        "minimax-m2.5": {
+          "name": "MiniMax M2.5",
           "modalities": {
-            "input": [
-              "text",
-              "image",
-              "video"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": [ "text" ],
+            "output": [ "text" ]
           },
           "limit": {
-            "context": 256000,
+            "context": 200000,
             "output": 128000
           }
         },
-        "kimi-k2.5": {
-          "name": "Kimi K2.5",
+        "doubao-seed-2.0-code": {
+          "name": "Seed 2.0 Code",
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": [ "text", "image" ],
+            "output": [ "text" ]
           },
           "limit": {
-            "context": 262144,
-            "output": 32768
+            "context": 200000,
+            "output": 32000
+          }
+        },
+        "doubao-seed-2.0-pro": {
+          "name": "Seed 2.0 Pro",
+          "modalities": {
+            "input": [ "text", "image" ],
+            "output": [ "text" ]
+          },
+          "limit": {
+            "context": 200000,
+            "output": 128000
           }
         }
       }
@@ -59,13 +59,8 @@
         "qwen3.5-plus": {
           "name": "Qwen3.5 Plus",
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": [ "text", "image" ],
+            "output": [ "text" ]
           },
           "options": {
             "thinking": {
@@ -81,13 +76,8 @@
         "MiniMax-M2.5": {
           "name": "MiniMax M2.5",
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": [ "text", "image" ],
+            "output": [ "text" ]
           },
           "options": {
             "thinking": {
@@ -116,13 +106,8 @@
         "kimi-k2.5": {
           "name": "Kimi K2.5",
           "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+            "input": [ "text", "image" ],
+            "output": [ "text" ]
           },
           "options": {
             "thinking": {
