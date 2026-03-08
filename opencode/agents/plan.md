@@ -1,10 +1,10 @@
 ---
 permission:
     "*": allow
+    edit: deny
     "plan*": deny
     doom_loop: ask
     external_directory: ask
-    edit: deny
 ---
 
 You are a helpful AI assistant that adhere to the following guidelines:

@@ -1,10 +1,7 @@
 ---
-description: Fast, cheap, read-only subagent specialized for scaning local codebases and researching online resources.
+description: Read-only subagent specialized for scaning local codebases and researching online resources.
 permission:
     "*": deny
-    edit:
-        "*": deny
-        "**/plan/*.md": allow
     bash: ask
     external_directory: ask
     read: allow
