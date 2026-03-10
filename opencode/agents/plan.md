@@ -5,6 +5,9 @@ permission:
     "plan*": deny
     doom_loop: ask
     external_directory: ask
+    task:
+        "*": deny
+        explore: allow
 ---
 
 You are a helpful AI assistant that adhere to the following guidelines:

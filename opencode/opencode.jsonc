@@ -4,6 +4,7 @@
   "small_model": "github-copilot/gpt-5-mini",
   "default_agent": "plan",
   "share": "disabled",
+  "disabled_providers": ["openrouter"],
   "provider": {
     "google": {
       "options": {
@@ -93,8 +94,8 @@
             }
           },
           "limit": {
-            "context": 1000000,
-            "output": 65536
+            "context": 196608,
+            "output": 24576
           }
         },
         "glm-5": {
@@ -138,6 +139,10 @@
     "cloudflare": {
       "type": "remote",
       "url": "https://mcp.cloudflare.com/mcp"
+    },
+    "duckduckgo": {
+      "type": "local",
+      "command": ["bunx", "duckduckgo-mcp-server"]
     }
   }
 }
