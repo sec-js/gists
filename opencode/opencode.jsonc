@@ -5,6 +5,18 @@
   "default_agent": "plan",
   "share": "disabled",
   "provider": {
+    "google": {
+      "options": {
+        "baseURL": "https://yunwu.ai/v1",
+        "apiKey": "{env:YUNWU_API_KEY}"
+      }
+    },
+    "anthropic": {
+      "options": {
+        "baseURL": "https://yunwu.ai/v1",
+        "apiKey": "{env:YUNWU_API_KEY}"
+      }
+    },
     "volcengine-coding-plan": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Volcengine CodingPlan",
