@@ -139,10 +139,6 @@
     "cloudflare": {
       "type": "remote",
       "url": "https://mcp.cloudflare.com/mcp"
-    },
-    "duckduckgo": {
-      "type": "local",
-      "command": ["bunx", "duckduckgo-mcp-server"]
     }
   }
 }
