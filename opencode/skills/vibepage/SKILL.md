@@ -54,6 +54,7 @@ Academic reports. Use this theme if it involves math or academic papers.
 - Organize like a short paper.
 - Be grounded and cite any source of info.
 - Use `KaTeX` to display math.
+- Avoid color gradient.
 
 #### Business
 
@@ -70,3 +71,4 @@ McKinsey style slides-like business report.
 - Use agent-browser to take screenshots to verify the layout and rendering.
 - Information is the key. Every paragraph and figure should convey an actual, interesting, non-trivial idea. Avoid generic transition words.
 - Be detailed. Extensively collect information, thoroughly brainstorm ideas, and rigorously verify every claim.
+- IMPORTANT: Do not include requirements of the research or report in the resulting page.
