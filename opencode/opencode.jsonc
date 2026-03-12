@@ -131,6 +131,13 @@
       }
     }
   },
+  "permission": {
+    "plan*": "deny",
+    "doom_loop": "ask",
+    "external_directory": "ask",
+    "context7*": "allow",
+    "brave*": "allow"
+  },
   "mcp": {
     "context7": {
       "type": "remote",

@@ -5,15 +5,15 @@ export const DelegateToolPlugin: Plugin = async ({ app, client }) => {
   app.tools.register(
     "delegate",
     {
-      description: "Delegate execution to an existing custom command, optionally resuming an existing task",
+      description: "Delegate execution of a command to subagent, optionally resuming on an existing session",
       args: {
         command: app.zod
           .string()
           .describe("Name of the custom command to execute (without leading /)"),
         task_id: app.zod
           .string()
-          .optional()
           .describe("Optional existing task ID to resume execution with the command")
+          .optional()
       },
       async execute({ command, task_id }) {
         // Get command from official OpenCode command registry
@@ -30,7 +30,7 @@ export const DelegateToolPlugin: Plugin = async ({ app, client }) => {
 
         // Invoke the built-in task tool with command configuration
         const taskResult = await client.tools.task({
-          subagent_type: targetCommand.agent || "explore",
+          subagent_type: targetCommand.agent || "general",
           description: targetCommand.description || `Execute ${command} command`,
           prompt: targetCommand.content,
           command: command,

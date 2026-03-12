@@ -11,7 +11,7 @@ This skill provides information and guidelines for creating single-file HTML web
 
 1. Setup a `bun` project. Latest bun is installed on this server and can be directly used. More information in environment skill.
 2. Build a web page, following the guidelines later.
-3. Bundle a single-file HTML with `bun build --compile --target=browser --minify`. [Documents](https://bun.com/docs/bundler/standalone-html).
+3. Bundle a single-file HTML with `bun build --compile --target=browser --minify ./index.html --outdir=dist`. [Documents](https://bun.com/docs/bundler/standalone-html).
 4. Put the file to /var/www/vibe. Avoid overwriting existing files, unless it is created by you or instructed by user.
 
 ### Where to put the project
