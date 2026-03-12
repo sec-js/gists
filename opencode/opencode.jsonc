@@ -136,7 +136,8 @@
     "doom_loop": "ask",
     "external_directory": "ask",
     "context7*": "allow",
-    "brave*": "allow"
+    "brave*": "allow",
+    "delegate": "deny"
   },
   "mcp": {
     "context7": {
