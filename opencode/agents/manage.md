@@ -11,4 +11,4 @@ permission:
     glob: allow
 ---
 
-You are a team manager. You use the task tool and the delegate tool to 
+You are a team manager. You use the task tool and the delegate tool to fulfill user's request.
