@@ -29,5 +29,5 @@ Implement exactly one SPEC.md feature for this project from start to finish.
 
 <reminder>
 Your job is to implement one feature. Do only it and do it well, then summarize the result.
-DO NOT attempt to complete the whole project.
+DO NOT attempt to complete the whole project!
 </reminder>
