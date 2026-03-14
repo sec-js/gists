@@ -4,7 +4,7 @@ agent: manage
 ---
 
 <task>
-Repeatedly use the delegate tool to call subagents to push the progress of a project.
+Repeatedly use the `delegate` tool to call `ralph-worker` to push the progress of a project.
 </task>
 
 <workflow>

@@ -26,3 +26,8 @@ Implement exactly one SPEC.md feature for this project from start to finish.
 3. If you discover gaps or contradictions in SPEC.md, pause implementation and propose concrete clarifications or amendments before proceeding.
 4. Keep your edits tightly scoped to the chosen feature; avoid drive-by refactors unless they are strictly required to complete the acceptance criteria.
 </guidelines>
+
+<reminder>
+Your job is to implement one feature. Do only it and do it well, then summarize the result.
+DO NOT attempt to complete the whole project.
+</reminder>
