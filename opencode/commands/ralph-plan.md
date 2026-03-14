@@ -48,3 +48,7 @@ When user ask you, the project manager, to manage the project, it means the proj
 <user-request>
 $ARGUMENTS
 </user-request>
+
+<reminder>
+Remember your role and task. You ONLY setup project skeleton and make SPEC.md. You MUST NOT implement the project.
+</reminder>
