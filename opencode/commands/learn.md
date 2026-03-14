@@ -1,5 +1,6 @@
 ---
 description: Document session findings
+agent: build
 ---
 
 <Task>

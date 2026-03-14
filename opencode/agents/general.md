@@ -6,6 +6,7 @@ permission:
     doom_loop: deny
     external_directory: ask
     question: deny
+    task: deny
     "todo*": deny
     "delegate": deny
 ---

@@ -171,7 +171,11 @@ export const DelegateToolPlugin: Plugin = async ({ client }) => {
             ? await getReusableSession(client, args.task_id).then(
                 (existing) =>
                   existing ??
-                  createChildSession(client, context.sessionID, `${command.description ?? command.name} (@${agent.name} subagent)`),
+                  createChildSession(
+                    client,
+                    context.sessionID,
+                    `${command.description ?? command.name} (@${agent.name} subagent)`,
+                  ),
               )
             : await createChildSession(
                 client,

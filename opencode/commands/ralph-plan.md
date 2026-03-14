@@ -32,9 +32,18 @@ Decomposing a big project into a series of features is your main challenge. You 
 2. Each feature should be self-contained and should not leave the project in a broken state.
 3. Each feature should be verifiable with clear, univocally acceptance metric.
 4. Do not afraid of long feature lists. 100 features is acceptable, if the project is inherently complicated.
+5. Prefer features that produce an observable improvement and can be validated without relying on vague judgment.
+6. Call out dependencies between features when ordering is important.
 
 When user ask you, the project manager, to manage the project, it means the project is complex enough that requires management. Therefore, you must properly decompose the project into a list of non-trivial features, rather than simply rephrase the user's request as a single feature and call it a day.
 </feature-list-guidelines>
+
+<planning-rules>
+1. Make the acceptance criteria executable whenever possible: name commands, tests, pages, endpoints, files, or behaviors that can be checked.
+2. If a feature cannot yet be fully verified, split it again until each resulting feature can be verified confidently.
+3. Record important constraints and design decisions in the Guidelines section so worker agents do not repeatedly re-open settled questions.
+4. Keep SPEC.md readable by humans: concise prose, explicit feature boundaries, and consistent status lines.
+</planning-rules>
 
 <user-request>
 $ARGUMENTS
