@@ -25,6 +25,25 @@
       }
     }
   },
+  "agent": {
+    "explore": {
+      "description": "Read-only agent backed by a cheap model (gpt 5-mini). Use it for simple and focused exploring tasks.",
+      "model": "github-copilot/gpt-5-mini"
+    },
+    "general": {
+      "description": "General-purpose subagent with write permission.",
+      "permission": {
+        "*": "allow",
+        "plan*": "deny",
+        "doom_loop": "deny",
+        "external_directory": "ask",
+        "question": "deny",
+        "todo*": "deny",
+        "task": "deny",
+        "delegate": "deny"
+      }
+    }
+  },
   "permission": {
     "plan*": "deny",
     "doom_loop": "ask",
@@ -38,10 +57,11 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp"
     },
-    // "cloudflare": {
-    //   "type": "remote",
-    //   "url": "https://mcp.cloudflare.com/mcp"
-    // },
+    "cloudflare": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.cloudflare.com/mcp"
+    },
     "brave": {
       "type": "local",
       "command": ["bunx", "@brave/brave-search-mcp-server", "--enabled-tools", "brave_web_search"]

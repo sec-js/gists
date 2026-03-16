@@ -5,7 +5,9 @@ hidden: true
 permission:
     "*": deny
     bash: ask
-    task: allow
+    task:
+        "*": allow
+        explore: deny
     delegate: allow
     read: allow
     glob: allow
