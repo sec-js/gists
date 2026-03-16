@@ -1,7 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode/minimax-m2.5-free",
+  "model": "alibaba-coding-plan-cn/glm-5",
   "small_model": "github-copilot/gpt-5-mini",
+  "disabled_providers": ["google", "anthropic", "opencode", "openrouter"],
   "default_agent": "plan",
   "share": "disabled",
   "provider": {
@@ -37,10 +38,10 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp"
     },
-    "cloudflare": {
-      "type": "remote",
-      "url": "https://mcp.cloudflare.com/mcp"
-    },
+    // "cloudflare": {
+    //   "type": "remote",
+    //   "url": "https://mcp.cloudflare.com/mcp"
+    // },
     "brave": {
       "type": "local",
       "command": ["bunx", "@brave/brave-search-mcp-server", "--enabled-tools", "brave_web_search"]
