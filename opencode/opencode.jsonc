@@ -65,6 +65,10 @@
     "brave": {
       "type": "local",
       "command": ["bunx", "@brave/brave-search-mcp-server", "--enabled-tools", "brave_web_search"]
+    },
+    "markitdown": {
+      "type": "local",
+      "command": ["uvx", "markitdown-mcp"]
     }
   }
 }
