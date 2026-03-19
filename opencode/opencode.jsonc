@@ -5,6 +5,9 @@
   "disabled_providers": ["google", "anthropic", "opencode", "openrouter", "nvidia"],
   "default_agent": "plan",
   "share": "disabled",
+  "compaction": {
+    "auto": false
+  },
   "provider": {
     "google": {
       "options": {
