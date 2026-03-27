@@ -37,8 +37,8 @@ Prefer the simple static route whenever it is sufficient.
 - Example usage:
 
 ```bash
-cat report.md | bun run <skill-base>/scripts/markdown-to-html.ts --theme academic > report-v1.html
-cat report.md | bun run <skill-base>/scripts/markdown-to-html.ts --title "Quarterly Report" --theme business > report-v1.html
+cat report.md | bun run <skill-base>/scripts/markdown-to-html.ts > report-v1.html
+cat report.md | bun run <skill-base>/scripts/markdown-to-html.ts --title "Quarterly Report" > report-v1.html
 ```
 
 - Replace `<skill-base>` with this skill's resolved base directory from the loaded skill output.
