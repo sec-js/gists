@@ -19,7 +19,7 @@ Prefer the simple static route whenever it is sufficient.
 ### Main workflow
 
 1. Classify the task as either a simple static document or a dynamic document / webapp.
-2. For a simple static document, do not create a dedicated project folder unless the user asks for one or you truly need to preserve intermediate files. Use this skill's bundled `scripts/markdown-to-html.ts` script directly.
+2. For a simple static document, do not create a dedicated project folder unless the user asks for one or you truly need to preserve intermediate files. Use this skill's bundled `markdown-to-html.ts` script directly.
 3. For a dynamic document / webapp, set up a `bun` project. Latest bun is installed on this server and can be directly used. More information in environment skill.
 4. Build the page following the guidelines later.
 5. For dynamic routes, bundle a single-file HTML with `bun build --compile --target=browser --minify ./index.html --outdir=dist`. [Documents](https://bun.com/docs/bundler/standalone-html).
@@ -28,17 +28,16 @@ Prefer the simple static route whenever it is sufficient.
 ### Simple static document route
 
 - Use this route for markdown-first deliverables, especially when the user already has markdown or when you can generate the markdown directly from research.
-- This skill bundles `scripts/markdown-to-html.ts`. It reads markdown from `stdin` and writes a full HTML document to `stdout`.
+- This skill bundles `markdown-to-html.ts`. It reads markdown from `stdin` and writes a full HTML document to `stdout`.
 - The script intentionally keeps the output minimal: rendered markdown HTML, `<title>`, `meta viewport`, and inline CSS only. Do not add extra chrome such as headers, footers, tables of contents, or scaffolding unless the user explicitly wants them in the markdown itself.
-- Let failures surface. Do not wrap the script in a way that hides `stderr`, because the agent should see parse/runtime errors and fix them.
-- Internally the script now calls Bun's standalone HTML bundler, so linked CSS, KaTeX fonts, syntax-highlighting styles, and local image assets can be inlined into the final single-file HTML.
+- Internally the script calls Bun's standalone HTML bundler, so linked CSS, KaTeX fonts, syntax-highlighting styles, and local image assets can be inlined into the final single-file HTML.
 - Relative asset paths are resolved from the current working directory. If the markdown refers to local images like `./figure.png`, run the script from the markdown's directory. Absolute filesystem image paths also work.
 - Do not use frontmatter with this route. The script does not parse frontmatter metadata; it treats the markdown as plain markdown content.
 - Example usage:
 
 ```bash
-cat report.md | bun run <skill-base>/scripts/markdown-to-html.ts > report-v1.html
-cat report.md | bun run <skill-base>/scripts/markdown-to-html.ts --title "Quarterly Report" > report-v1.html
+cat report.md | bun run <skill-base>/markdown-to-html.ts > report-v1.html
+cat report.md | bun run <skill-base>/markdown-to-html.ts --title "Quarterly Report" > report-v1.html
 ```
 
 - Replace `<skill-base>` with this skill's resolved base directory from the loaded skill output.
