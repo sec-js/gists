@@ -17,9 +17,9 @@ Load mmcd skill and run an implementation iteration.
 
 2. Based on the subagent's response:
     - DONE: repeat step 1 for the next iteration.
-    - CONCERN: check the subagent's concern and re-discuss the design with user if needed.
-    - [empty response]: The agent likely be interrupted. Revert changes (if any) with git and retry (up to 3 times, abort afterwards).
+    - CONCERNED: check the subagent's concern and re-discuss the design with user if needed.
     - GOAL REACHED: proceed to review step.
+    - [empty response]: The agent likely be interrupted. Revert changes (if any) with git and retry (up to 3 times, abort afterwards).
 
 3. Use `task` tool with the following prompt:
 
