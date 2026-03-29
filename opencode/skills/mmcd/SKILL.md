@@ -27,16 +27,19 @@ This file should be structured with exactly these sections:
 
 A development is split into three phases: plan, implement, and review.
 
-- **Plan**: Discuss designs with the user, and initialize AGENTS.md and MMCD.md.
+- **Plan**: Discuss designs with the user, and initialize MMCD.md.
 - **Implement**: Each iteration implement one specific, non-trivial feature.
 - **Review**: Check if the goal is reached, the design is followed, the code is well tested, and the documents are up to date.
 
 ## Further Instructions
 
-Find and follow your further instructions by identifing the current stage.
+Find and follow your further instructions based on user's hints and the project state.
 
-- If there is no `MMCD.md` available or it is clearly stale, you are likely in the plan stage. The user should also have given a goal to you. Read and follows `<skill_base>/plan.md`.
-- If there is a `MMCD.md` with unreached goal, you are likely in the implement stage. The user should also have directly instructed you to "implement an iteration". Read and follows `<skill_base>/implement.md`.
-- If there is a `MMCD.md` with completed goal, you are likely in the review stage. The user should also have directly instructed you to "review" or "finalize". Read and follows `<skill_base>/review.md`.
+- If the user explicitly mentions "mmcd" and gives a goal, but there is no `MMCD.md` or the existing one is clearly stale, you are likely in the plan stage. Read and follows `<skill_base>/plan.md`.
+- If the user instructs you to "drive" the implementation, and you have `task` tool available, you are likely in the implement stage and serve as the driver. Read and follows `<skill_base>/drive.md`.
+- If you are asked to implement an interation, and you don't have `task` tool available, you are likely in the implement stage and serve as an implementer. Read and follows `<skill_base>/implement.md`.
+- If the user instructs you to "review" or "finalize", you are likely in the review stage. Read and follows `<skill_base>/review.md`.
+
+You MUST strictly follow the workflow and the stage instructions IF the user explicitly mentioned "mmcd".
 
 [End of MMCD Skill]

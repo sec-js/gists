@@ -42,7 +42,8 @@
     "todo*": "deny",
     "external_directory": {
       "*": "ask",
-      "/tmp/**": "allow"
+      "/tmp/**": "allow",
+      "/root/.config/opencode/**": "allow"
     },
     "context7*": "allow",
     "brave*": "allow",
