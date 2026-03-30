@@ -94,6 +94,38 @@ Inspect errors:
 jq '.' result.json
 ```
 
+## Prompt Guide
+
+The official Gemini image generation guide recommends describing scenes in natural language instead of listing isolated keywords.
+
+For generation prompts:
+
+- Photorealistic scenes: use photography language such as shot type, camera or lens details, lighting, mood, textures, and aspect ratio.
+- Stylized illustrations and stickers: be explicit about the style, line work, shading, palette, and request a transparent background if desired.
+- Text in images: specify the exact text, describe the font style and layout clearly, and prefer Gemini 3 Pro Image for high-stakes production assets.
+- Product mockups: describe the product, background surface, studio lighting setup, camera angle, and the specific feature that should be emphasized.
+- Minimalist designs: state the subject placement and the empty negative space you want preserved.
+- Sequential art: describe the panel count, art style, character, and scene clearly.
+- Real-time or current events: use grounding with Google Search when the image depends on fresh facts.
+
+For editing prompts:
+
+- Add or remove elements by naming the source image subject, the exact change, and how the new element should integrate into style, lighting, and perspective.
+- For local edits, specify what should change and explicitly say everything else should remain the same.
+- For style transfer, ask the model to preserve composition while re-rendering in the target style.
+- For multiple images, explicitly assign roles to each image, such as subject from image 1 and background from image 2.
+- For high-fidelity edits, describe the details that must remain unchanged, such as a face, logo, or garment.
+- For rough sketches, state which features must be preserved and which new materials or finish details should be added.
+
+General best practices from the guide:
+
+- Be hyper-specific.
+- Provide the purpose and context of the image.
+- Iterate conversationally instead of trying to get the final image in one prompt.
+- Break complex scenes into step-by-step instructions.
+- Prefer positive scene descriptions over short negative prompts.
+- Use camera and cinematic language to control composition.
+
 ## Notes
 
 - The script uses the Yunwu Gemini proxy endpoint at `https://yunwu.ai/v1beta`.
