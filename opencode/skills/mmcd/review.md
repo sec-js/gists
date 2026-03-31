@@ -5,4 +5,4 @@ Review the execution and check:
 4. Is the document up to date?
 5. Is there issue in the progress record or git history, that the user may want to review?
 
-If it is completely Ok, delete the MMCD.md file, consider this development finalized. Otherwise, report the issues.
+Check with high standard. If it is completely Ok, delete the MMCD.md file, consider this development finalized. Otherwise, report the issues.

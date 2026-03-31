@@ -1,6 +1,6 @@
 ---
 name: nano-banana
-description: Generate or edit images with Gemini 3.1 Flash Image. Read the prompt from stdin and return raw JSON.
+description: Generate or edit images with Gemini 3.1 Flash Image.
 ---
 
 ## Nano Banana
@@ -9,15 +9,7 @@ This skill provides a small Bun CLI for Gemini image generation and image editin
 
 The bundled script reads the prompt from `stdin`, sends a request to `gemini-3.1-flash-image-preview`, and writes the raw API JSON response to `stdout`.
 
-Default backend: Yunwu.
-
-Fallback backend: OpenRouter.
-
-Use OpenRouter only if Yunwu failed, and only after asking the user for explicit permission, because the user's OpenRouter budget is limited.
-
-Ensure `YUNWU_API_KEY` is available in the environment before running it.
-
-Ensure `OPENROUTER_API_KEY` is available only when the user has explicitly approved using OpenRouter.
+The default backend is Yunwu. Use OpenRouter only if Yunwu failed, and only after asking the user for explicit permission, because the user's OpenRouter budget is limited.
 
 ## Script
 
@@ -52,14 +44,14 @@ printf 'Create a poster that blends the colors of the first image with the compo
 Control output size and aspect ratio:
 
 ```bash
-printf 'A clean modern weather infographic for Shanghai\n' | bun run <skill-base>/generate.ts --resolution 2K --aspect-ratio 16:9 > result.json
+printf 'A clean modern weather infographic for Shanghai\n' | bun run <skill-base>/generate.ts --resolution 512 --aspect-ratio 16:9 > result.json
 ```
 
 ## Options
 
 - `--image <path>`: add an input image. Repeatable. Maximum 14 images.
 - `--backend <name>`: `yunwu` or `openrouter`. Default is `yunwu`.
-- `--resolution <size>`: one of `512`, `1K`, `2K`, `4K`. Default is `1K`.
+- `--resolution <size>`: one of `512`, `1K`, `2K`, `4K`. Default is `1K`. Use the default unless user hints otherwise.
 - `--aspect-ratio <ratio>`: one of `1:1`, `1:4`, `1:8`, `2:3`, `3:2`, `3:4`, `4:1`, `4:3`, `4:5`, `5:4`, `8:1`, `9:16`, `16:9`, `21:9`. Default is `1:1`.
 - `--help`: print usage.
 
@@ -72,12 +64,6 @@ The response is raw JSON. Image bytes are typically returned in:
 ```text
 Yunwu: .candidates[0].content.parts[].inlineData.data
 OpenRouter: .choices[0].message.images[].image_url.url
-```
-
-Check which backend-style image field is present:
-
-```bash
-jq '{yunwuImages: [.candidates[0].content.parts[]? | select(.inlineData != null)] | length, openrouterImages: [.choices[0].message.images[]?] | length}' result.json
 ```
 
 ### Yunwu extraction
@@ -100,12 +86,6 @@ Extract the first returned image bytes with `jq` and `base64`:
 jq -r '.candidates[0].content.parts[] | select(.inlineData != null) | .inlineData.data' result.json | base64 -d > output.bin
 ```
 
-Extract the first returned image with Bun when `jq` is unavailable:
-
-```bash
-bun -e 'const payload = JSON.parse(await Bun.file("result.json").text()); const part = payload.candidates?.[0]?.content?.parts?.find((item) => item.inlineData); if (!part?.inlineData?.data) throw new Error("No image data found"); await Bun.write("output.bin", Buffer.from(part.inlineData.data, "base64"));'
-```
-
 ### OpenRouter extraction
 
 Check whether the call returned an image:
@@ -124,12 +104,6 @@ Extract the first returned image bytes with `jq` and `base64`:
 
 ```bash
 jq -r '.choices[0].message.images[0].image_url.url | split(",")[1]' result.json | base64 -d > output.bin
-```
-
-Extract the first returned image with Bun when `jq` is unavailable:
-
-```bash
-bun -e 'const payload = JSON.parse(await Bun.file("result.json").text()); const imageUrl = payload.choices?.[0]?.message?.images?.[0]?.image_url?.url; if (!imageUrl) throw new Error("No image data found"); const [, base64] = imageUrl.split(",", 2); if (!base64) throw new Error("Expected data URL"); await Bun.write("output.bin", Buffer.from(base64, "base64"));'
 ```
 
 Inspect any text returned alongside the image:

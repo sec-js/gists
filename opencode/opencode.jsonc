@@ -40,6 +40,7 @@
   "permission": {
     "plan*": "deny",
     "todo*": "deny",
+    "question": "deny",
     "external_directory": {
       "*": "ask",
       "/tmp/**": "allow",
