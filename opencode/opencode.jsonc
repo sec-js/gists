@@ -55,11 +55,6 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp"
     },
-    "cloudflare": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://mcp.cloudflare.com/mcp"
-    },
     "brave": {
       "type": "local",
       "command": ["bunx", "@brave/brave-search-mcp-server", "--enabled-tools", "brave_web_search"]
