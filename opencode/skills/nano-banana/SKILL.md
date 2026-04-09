@@ -1,11 +1,11 @@
 ---
 name: nano-banana
-description: Generate or edit images with Gemini 3.1 Flash Image.
+description: Generate or edit images with Nano Banana.
 ---
 
 ## Nano Banana
 
-This skill provides a small Bun CLI for Gemini image generation and image editing.
+This skill provides a Bun CLI for image generation and image editing.
 
 The bundled script reads the prompt from `stdin`, sends a request to `gemini-3.1-flash-image-preview`, and writes the raw API JSON response to `stdout`.
 

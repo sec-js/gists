@@ -13,4 +13,6 @@ Finalize this session.
     - Guideline: prefer merge into existing document, avoid generic preambles or repeated info, focus on actual observations, and be concise.
 2. If the project is a git repo, make a commit.
     - If it is also in a git worktree, merge the worktree.
-3. Respond the user with a very breif summary of what was done in this session, and your modifications to AGENTS.md (if any).
+    - Do not push to remote unless asked.
+3. If the project has a deploy instruction, use your best judgement whether you should redeploy it.
+4. Respond the user with a very breif summary of what was done in this session, your modifications to AGENTS.md (if any), and the deployment (e.g., URL if any).
