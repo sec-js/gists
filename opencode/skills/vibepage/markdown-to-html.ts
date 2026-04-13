@@ -436,6 +436,14 @@ const markdownEngine = MarkdownIt({
   .use(taskLists)
   .use(katexPlugin)
 
+const defaultValidateLink = markdownEngine.validateLink.bind(markdownEngine)
+markdownEngine.validateLink = (url: string) => {
+  if (url.toLowerCase().startsWith("file:///")) {
+    return defaultValidateLink(url.slice(7))
+  }
+  return defaultValidateLink(url)
+}
+
 function extractTitle(markdown: string, explicitTitle?: string) {
   if (explicitTitle) return explicitTitle
 
@@ -485,11 +493,16 @@ function buildDocument(body: string, title: string) {
 async function collectAbsoluteAssetFiles(html: string) {
   const files: Record<string, Uint8Array> = {}
   let index = 0
-  const matches = Array.from(html.matchAll(/\b(src|poster)=(["'])(\/[^"']+)\2/g))
+  const matches = Array.from(html.matchAll(/\b(src|poster)=(["'])((?:file:\/\/\/|\/)[^"']+)\2/g))
   let rewritten = html
 
   for (const match of matches) {
-    const [fullMatch, attr, quote, assetPath] = match
+    const [fullMatch, attr, quote, rawPath] = match
+
+    const assetPath = rawPath.startsWith("file:///")
+      ? decodeURIComponent(rawPath.slice(7))
+      : rawPath
+
     if (!existsSync(assetPath)) continue
 
     const extension = path.extname(assetPath)
