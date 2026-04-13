@@ -2,19 +2,13 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "alibaba-coding-plan-cn/glm-5",
   "small_model": "github-copilot/gpt-5-mini",
-  "disabled_providers": ["google", "anthropic", "opencode", "openrouter", "nvidia", "cloudflare-ai-gateway"],
+  "disabled_providers": ["anthropic", "opencode", "openrouter", "nvidia", "cloudflare-ai-gateway"],
   "default_agent": "plan",
   "share": "disabled",
   "compaction": {
     "auto": false
   },
   "provider": {
-    "google": {
-      "options": {
-        "baseURL": "https://yunwu.ai/v1",
-        "apiKey": "{env:YUNWU_API_KEY}"
-      }
-    },
     "openai": {
       "options": {
         "baseURL": "https://yunwu.ai/v1",

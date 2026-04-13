@@ -150,6 +150,8 @@ General best practices from the guide:
 - Prefer positive scene descriptions over short negative prompts.
 - Use camera and cinematic language to control composition.
 
+Important note when generating images about new / specific things: Include enough context and explain the things to generate to Gemini. The model is not magical and it cannot generate things it does not know about. It does not read your mind or conversation history; You must include all information about the object to generate. 
+
 ## Notes
 
 - The script defaults to the Yunwu Gemini proxy endpoint at `https://yunwu.ai/v1beta`.
