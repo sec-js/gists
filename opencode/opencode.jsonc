@@ -34,7 +34,8 @@
       "model": "alibaba-coding-plan-cn/glm-5"
     },
     "general": {
-      "description": "General-purpose subagent with write permission."
+      "description": "General-purpose subagent with write permission.",
+      "model": "alibaba-coding-plan-cn/glm-5"
     }
   },
   "permission": {

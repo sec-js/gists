@@ -1,6 +1,8 @@
 ---
 description: Review recent changes
 subtask: true
+model: github-copilot/gpt-5.4-mini
+reasoningEffort: "xhigh"
 ---
 
 Review code changes and provide actionable feedback.
@@ -40,6 +42,11 @@ Use best judgement when processing input.
 - O(n²) on unbounded data, N+1 queries, blocking I/O on hot paths
 
 **Behavior Changes** - If a behavioral change is introduced, raise it (especially if it's possibly unintentional).
+
+**Coherence** - Do the code, comment, document, and tests match?
+- Does the added tests actually test the changed code?
+- Are the comments around the changed code still valid?
+- Depending on the project convention, omiting tests or documents may be OK. However, if there are any, they must stay correct and up-to-date.
 
 **AI Slop** - Identify and flag all AI-generated slop.
 - Extra comments that a human would not add or that are inconsistent with the rest of the file
