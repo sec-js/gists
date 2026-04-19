@@ -1,8 +1,7 @@
 ---
 description: Review recent changes
-subtask: true
+agent: plan
 model: github-copilot/gpt-5.4-mini
-reasoningEffort: "xhigh"
 ---
 
 Review code changes and provide actionable feedback.
