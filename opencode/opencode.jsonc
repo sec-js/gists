@@ -2,7 +2,7 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "alibaba-coding-plan-cn/glm-5",
   "small_model": "opencode/gpt-5-nano",
-  "disabled_providers": ["anthropic", "google", "openrouter", "cloudflare-ai-gateway"],
+  "disabled_providers": ["cloudflare-ai-gateway"],
   "default_agent": "plan",
   "share": "disabled",
   "compaction": {
@@ -16,12 +16,6 @@
       }
     },
     "anthropic": {
-      "options": {
-        "baseURL": "https://yunwu.ai/v1",
-        "apiKey": "{env:YUNWU_API_KEY}"
-      }
-    },
-    "google": {
       "options": {
         "baseURL": "https://yunwu.ai/v1",
         "apiKey": "{env:YUNWU_API_KEY}"
