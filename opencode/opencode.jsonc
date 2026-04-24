@@ -20,6 +20,12 @@
         "baseURL": "https://yunwu.ai/v1",
         "apiKey": "{env:YUNWU_API_KEY}"
       }
+    },
+    "deepseek": {
+      "options": {
+        "baseURL": "https://yunwu.ai/v1",
+        "apiKey": "{env:YUNWU_API_KEY}"
+      }
     }
   },
   "agent": {
