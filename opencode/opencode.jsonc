@@ -2,7 +2,7 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "opencode-go/kimi-k2.6",
   "small_model": "opencode/gpt-5-nano",
-  "disabled_providers": ["openrouter", "cloudflare-ai-gateway"],
+  "disabled_providers": ["openrouter", "nvidia", "cloudflare-ai-gateway"],
   "default_agent": "plan",
   "share": "disabled",
   "compaction": {
@@ -24,7 +24,7 @@
   },
   "agent": {
     "explore": {
-      "description": "Read-only agent backed by a cheap model. Use it for simple and focused exploring tasks.",
+      "description": "Read-only agent backed by a cheap model.",
       "model": "opencode-go/deepseek-v4-flash"
     },
     "general": {
