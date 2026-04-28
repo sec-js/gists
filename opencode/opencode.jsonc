@@ -2,7 +2,7 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "opencode-go/kimi-k2.6",
   "small_model": "opencode/gpt-5-nano",
-  "disabled_providers": ["openrouter", "nvidia", "cloudflare-ai-gateway"],
+  "disabled_providers": ["openrouter", "nvidia", "ollama-cloud", "cloudflare-ai-gateway"],
   "default_agent": "plan",
   "share": "disabled",
   "compaction": {
@@ -10,12 +10,6 @@
   },
   "provider": {
     "openai": {
-      "options": {
-        "baseURL": "https://yunwu.ai/v1",
-        "apiKey": "{env:YUNWU_API_KEY}"
-      }
-    },
-    "anthropic": {
       "options": {
         "baseURL": "https://yunwu.ai/v1",
         "apiKey": "{env:YUNWU_API_KEY}"
