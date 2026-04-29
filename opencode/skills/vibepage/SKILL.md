@@ -30,7 +30,7 @@ Prefer the simple static route whenever it is sufficient.
 - Use this route for markdown-first deliverables, especially when the user already has markdown or when you can generate the markdown directly from research.
 - This skill bundles `markdown-to-html.ts`. It reads markdown from `stdin` and writes a full HTML document to `stdout`.
 - The script intentionally keeps the output minimal: rendered markdown HTML, `<title>`, `meta viewport`, and inline CSS only. Do not add extra chrome such as headers, footers, tables of contents, or scaffolding unless the user explicitly wants them in the markdown itself.
-- Internally the script calls Bun's standalone HTML bundler, so linked CSS, KaTeX fonts, syntax-highlighting styles, and local image assets can be inlined into the final single-file HTML.
+- Internally the script calls Bun's minifying standalone HTML bundler, so linked CSS, KaTeX fonts, syntax-highlighting styles, and local image assets can be inlined into the final single-file HTML.
 - Relative asset paths are resolved from the current working directory. If the markdown refers to local images like `./figure.png`, run the script from the markdown's directory. Absolute filesystem image paths also work.
 - Do not use frontmatter with this route. The script does not parse frontmatter metadata; it treats the markdown as plain markdown content.
 - Example usage:
@@ -38,11 +38,13 @@ Prefer the simple static route whenever it is sufficient.
 ```bash
 cat report.md | bun run <skill-base>/markdown-to-html.ts > report-v1.html
 cat report.md | bun run <skill-base>/markdown-to-html.ts --title "Quarterly Report" > report-v1.html
+cat report.md | bun run <skill-base>/markdown-to-html.ts --theme github --title "Quarterly Report" > report-v1.html
 ```
 
 - Replace `<skill-base>` with this skill's resolved base directory from the loaded skill output.
 - If `--title` is omitted, the script derives the title from the first markdown `# H1` when possible.
-- This route now supports server-side KaTeX rendering and syntax highlighting for fenced code blocks while still outputting a single standalone HTML file.
+- If `--theme` is omitted, the script defaults to `opencode`. Supported build-time themes are `opencode` and `github`; both include light and dark variants through `prefers-color-scheme`.
+- This route uses `marked`, `marked-katex-extension`, and Shiki. It supports server-side KaTeX rendering, inlined KaTeX fonts, and Shiki syntax highlighting for fenced code blocks while still outputting a single standalone HTML file.
 - Because this route is stdin/stdout based, it is best for markdown-only or markdown-first pages. If you need JavaScript, ECharts, search/filter interactions, complex stateful UI, or broader app behavior, switch to the dynamic route.
 
 ### Dynamic document / webapp route
