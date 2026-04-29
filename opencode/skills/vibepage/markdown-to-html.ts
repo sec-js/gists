@@ -4,6 +4,7 @@ import { existsSync, readFileSync } from "node:fs"
 import { createRequire } from "node:module"
 import path from "node:path"
 import { Marked } from "marked"
+import markedFootnote from "marked-footnote"
 import markedKatex from "marked-katex-extension"
 import { bundledLanguages, codeToHtml, type BundledLanguage, type ThemeRegistrationRaw } from "shiki"
 
@@ -208,6 +209,49 @@ body {
   background-color: transparent;
 }
 
+[data-component="markdown"] sup a[data-footnote-ref] {
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+[data-component="markdown"] hr[data-footnotes] {
+  margin: 32px 0 16px;
+}
+
+[data-component="markdown"] .footnotes {
+  color: var(--page-muted);
+  font-size: 0.9em;
+}
+
+[data-component="markdown"] .footnotes ol {
+  padding-left: 1.5em;
+}
+
+[data-component="markdown"] .footnotes li:target {
+  color: var(--page-text);
+}
+
+[data-component="markdown"] .footnotes p {
+  margin-bottom: 8px;
+}
+
+[data-component="markdown"] a[data-footnote-backref] {
+  font-size: 0.85em;
+  text-decoration: none;
+}
+
+[data-component="markdown"] .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 [data-component="markdown"] input[type="checkbox"] {
   margin-right: 0.5em;
 }
@@ -340,12 +384,21 @@ body {
 [data-component="markdown"] h4,
 [data-component="markdown"] h5,
 [data-component="markdown"] h6 {
-  margin-top: 0;
+  margin-top: 32px;
   margin-bottom: 24px;
   color: var(--text-strong);
   font-size: 14px;
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-large);
+}
+
+[data-component="markdown"] > h1:first-child,
+[data-component="markdown"] > h2:first-child,
+[data-component="markdown"] > h3:first-child,
+[data-component="markdown"] > h4:first-child,
+[data-component="markdown"] > h5:first-child,
+[data-component="markdown"] > h6:first-child {
+  margin-top: 0;
 }
 
 [data-component="markdown"] strong,
@@ -507,6 +560,52 @@ body {
   height: auto;
   margin: 1.5rem 0;
   border-radius: 4px;
+}
+
+[data-component="markdown"] sup a[data-footnote-ref] {
+  font-size: 0.85em;
+  font-weight: var(--font-weight-medium);
+}
+
+[data-component="markdown"] hr[data-footnotes] {
+  height: auto;
+  margin: 32px 0 16px;
+  border-top: 1px solid var(--border-weaker-base);
+}
+
+[data-component="markdown"] .footnotes {
+  color: var(--text-base);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-large);
+}
+
+[data-component="markdown"] .footnotes ol {
+  padding-left: 1.5rem;
+}
+
+[data-component="markdown"] .footnotes li:target {
+  color: var(--text-strong);
+}
+
+[data-component="markdown"] .footnotes p {
+  margin-bottom: 8px;
+}
+
+[data-component="markdown"] a[data-footnote-backref] {
+  font-size: 0.85em;
+  text-decoration: none;
+}
+
+[data-component="markdown"] .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 [data-component="markdown"] .katex {
@@ -837,6 +936,11 @@ function buildMarkdownEngine(theme: Theme) {
     markedKatex({
       throwOnError: false,
       nonStandard: true,
+    }),
+    markedFootnote({
+      sectionClass: "footnotes",
+      headingClass: "sr-only",
+      footnoteDivider: true,
     }),
   )
 

@@ -3,6 +3,7 @@
     "@opencode-ai/plugin": "1.4.7",
     "katex": "^0.16.40",
     "marked": "^18.0.2",
+    "marked-footnote": "^1.4.0",
     "marked-katex-extension": "^5.1.8",
     "shiki": "^4.0.2"
   }

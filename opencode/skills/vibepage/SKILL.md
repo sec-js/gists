@@ -44,7 +44,20 @@ cat report.md | bun run <skill-base>/markdown-to-html.ts --theme github --title 
 - Replace `<skill-base>` with this skill's resolved base directory from the loaded skill output.
 - If `--title` is omitted, the script derives the title from the first markdown `# H1` when possible.
 - If `--theme` is omitted, the script defaults to `opencode`. Supported build-time themes are `opencode` and `github`; both include light and dark variants through `prefers-color-scheme`.
-- This route uses `marked`, `marked-katex-extension`, and Shiki. It supports server-side KaTeX rendering, inlined KaTeX fonts, and Shiki syntax highlighting for fenced code blocks while still outputting a single standalone HTML file.
+- This route uses `marked`, `marked-katex-extension`, `marked-footnote`, and Shiki. It supports server-side KaTeX rendering, footnotes, inlined KaTeX fonts, and Shiki syntax highlighting for fenced code blocks while still outputting a single standalone HTML file.
+- If you are unsure how a supported Markdown feature should be written, inspect `examples/markdown-features.md`. It is the canonical fixture for headings, emphasis, links, blockquotes, lists, task lists, tables, code fences, KaTeX math, images, captions, collapsible details, and footnotes.
+- Use common `[^label]` footnotes for source citations, bibliography-style references, caveats, and short explanatory notes. The rendered page shows numeric footnote markers even when labels are descriptive.
+- Example footnote usage:
+
+```md
+A sourced claim belongs in the body.[^source]
+
+![Chart of revenue](./revenue.png)
+*Source: Company FY2025 annual report.*
+
+[^source]: Company FY2025 annual report, p. 42.
+```
+
 - Because this route is stdin/stdout based, it is best for markdown-only or markdown-first pages. If you need JavaScript, ECharts, search/filter interactions, complex stateful UI, or broader app behavior, switch to the dynamic route.
 
 ### Dynamic document / webapp route
@@ -76,6 +89,8 @@ Choose a url-safe file name.
 - For dynamic routes, split the files in the project and let `bun` bundle them. Avoid operating on a huge single HTML.
 - Prefer introducing libraries with `bun install` only when the dynamic route actually needs them. Avoid linking to external URL.
 - Focus on content, don't overengineer the code.
+- For researched pages, cite non-obvious factual claims with footnotes instead of raw inline URLs. Use concise labels like `[^source]`, `[^paper-smith-2024]`, or `[^data]`; the rendered output will number them automatically.
+- For image citations, prefer a short italic caption directly below the image. If the source needs detail, put the detail in a footnote.
 - Important: do not include any guiding words on constraints in the resulting webpage. For example, if the user ask you to build a webapp without using React, you just build it without React, do not say in the page that it is build without React. The resulting page is a final product, not a progress record.
 - Prefer picking a theme from following, and follow the designs.
 
@@ -96,7 +111,7 @@ General, regular reports.
 Academic reports. Use this theme if it involves math or academic papers.
 
 - Organize like a short paper.
-- Be grounded and cite any source of info.
+- Be grounded and cite any source of info with footnotes.
 - The simple static markdown route can render math with `KaTeX` now, so use the dynamic route only when math is part of a more interactive application.
 - Avoid color gradient.
 
