@@ -7,7 +7,7 @@ description: Generate or edit images with Nano Banana.
 
 This skill provides a Bun CLI for image generation and image editing.
 
-The bundled script reads the prompt from `stdin`, sends a request to `gemini-3.1-flash-image-preview`, and writes the raw API JSON response to `stdout`.
+The bundled script reads the prompt from `stdin`, sends a request to `gemini-3-pro-image-preview`, and writes the raw API JSON response to `stdout`.
 
 The default backend is Yunwu. Use OpenRouter only if Yunwu failed, and only after asking the user for explicit permission, because the user's OpenRouter budget is limited.
 
@@ -44,15 +44,15 @@ printf 'Create a poster that blends the colors of the first image with the compo
 Control output size and aspect ratio:
 
 ```bash
-printf 'A clean modern weather infographic for Shanghai\n' | bun run <skill-base>/generate.ts --resolution 512 --aspect-ratio 16:9 > result.json
+printf 'A clean modern weather infographic for Shanghai\n' | bun run <skill-base>/generate.ts --resolution 1K --aspect-ratio 16:9 > result.json
 ```
 
 ## Options
 
 - `--image <path>`: add an input image. Repeatable. Maximum 14 images.
 - `--backend <name>`: `yunwu` or `openrouter`. Default is `yunwu`.
-- `--resolution <size>`: one of `512`, `1K`, `2K`, `4K`. Default is `1K`. Use the default unless user hints otherwise.
-- `--aspect-ratio <ratio>`: one of `1:1`, `1:4`, `1:8`, `2:3`, `3:2`, `3:4`, `4:1`, `4:3`, `4:5`, `5:4`, `8:1`, `9:16`, `16:9`, `21:9`. Default is `1:1`.
+- `--resolution <size>`: one of `1K`, `2K`, `4K`. Default is `1K`. Use the default unless user hints otherwise.
+- `--aspect-ratio <ratio>`: one of `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9`. Default is `1:1`.
 - `--help`: print usage.
 
 Each input image must be `4 MB` or smaller. The script returns an error JSON object if any image is too large.
@@ -156,6 +156,6 @@ Important note when generating images about new / specific things: Include enoug
 
 - The script defaults to the Yunwu Gemini proxy endpoint at `https://yunwu.ai/v1beta`.
 - The OpenRouter fallback endpoint is `https://openrouter.ai/api/v1/chat/completions`.
-- For OpenRouter, the script uses the same Gemini model through `google/gemini-3.1-flash-image-preview`.
+- The script uses Gemini 3 Pro Image through `gemini-3-pro-image-preview` on Yunwu and `google/gemini-3-pro-image-preview` on OpenRouter.
 - The prompt must come from `stdin`.
 - The script writes both success and failure as JSON to `stdout` so callers can handle everything in one pipeline.

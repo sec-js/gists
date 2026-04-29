@@ -4,8 +4,8 @@ import { readFile, stat } from "node:fs/promises"
 import path from "node:path"
 
 const DEFAULT_BACKEND = "yunwu"
-const YUNWU_MODEL = "gemini-3.1-flash-image-preview"
-const OPENROUTER_MODEL = "google/gemini-3.1-flash-image-preview"
+const YUNWU_MODEL = "gemini-3-pro-image-preview"
+const OPENROUTER_MODEL = "google/gemini-3-pro-image-preview"
 const DEFAULT_RESOLUTION = "1K"
 const DEFAULT_ASPECT_RATIO = "1:1"
 const MAX_IMAGE_BYTES = 4 * 1024 * 1024
@@ -13,19 +13,15 @@ const MAX_INPUT_IMAGES = 14
 const YUNWU_BASE_URL = "https://yunwu.ai/v1beta"
 const OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
-const VALID_RESOLUTIONS = new Set(["512", "1K", "2K", "4K"])
+const VALID_RESOLUTIONS = new Set(["1K", "2K", "4K"])
 const VALID_ASPECT_RATIOS = new Set([
   "1:1",
-  "1:4",
-  "1:8",
   "2:3",
   "3:2",
   "3:4",
-  "4:1",
   "4:3",
   "4:5",
   "5:4",
-  "8:1",
   "9:16",
   "16:9",
   "21:9",
@@ -47,7 +43,7 @@ type LoadedImage = {
 
 function usage() {
   return [
-    "Usage: bun run generate.ts [--backend <yunwu|openrouter>] [--image <path> ...] [--resolution <512|1K|2K|4K>] [--aspect-ratio <ratio>]",
+    "Usage: bun run generate.ts [--backend <yunwu|openrouter>] [--image <path> ...] [--resolution <1K|2K|4K>] [--aspect-ratio <ratio>]",
     "",
     "Reads the prompt from stdin and prints raw JSON to stdout.",
     "",
@@ -260,14 +256,6 @@ function toOpenRouterImagePart(image: LoadedImage) {
   }
 }
 
-function mapOpenRouterResolution(resolution: string) {
-  if (resolution === "512") {
-    return "0.5K"
-  }
-
-  return resolution
-}
-
 function buildRequest(options: Options, prompt: string, images: LoadedImage[]) {
   if (options.backend === "yunwu") {
     return {
@@ -310,9 +298,9 @@ function buildRequest(options: Options, prompt: string, images: LoadedImage[]) {
       modalities: ["image", "text"],
       image_config: {
         aspect_ratio: options.aspectRatio,
-        image_size: mapOpenRouterResolution(options.resolution),
+        image_size: options.resolution,
       },
-    },
+    }
   }
 }
 
