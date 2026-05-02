@@ -19,7 +19,7 @@
   "agent": {
     "explore": {
       "description": "Read-only agent backed by a cheap model.",
-      "model": "github-copilot/gpt-5.4-mini"
+      "model": "opencode-go/deepseek-v4-flash"
     },
     "general": {
       "description": "General-purpose subagent with write permission."
