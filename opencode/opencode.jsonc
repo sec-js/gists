@@ -18,7 +18,7 @@
     "nano-gpt": {
       "models": {
         "deepseek/deepseek-v4-pro-cheaper:thinking": {
-          "name": "DeepSeek V4 Pro",
+          "name": "DeepSeek V4 Pro Thinking",
           "limit": {
             "context": 1000000,
             "output": 384000
