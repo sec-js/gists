@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode-go/kimi-k2.6",
+  "model": "nano-gpt/deepseek/deepseek-v4-pro-cheaper:thinking",
   "small_model": "opencode/gpt-5-nano",
   "disabled_providers": ["openrouter", "nvidia", "ollama-cloud", "cloudflare-ai-gateway"],
   "default_agent": "plan",
@@ -13,6 +13,20 @@
       "options": {
         "baseURL": "https://yunwu.ai/v1",
         "apiKey": "{env:YUNWU_API_KEY}"
+      }
+    },
+    "nano-gpt": {
+      "models": {
+        "deepseek/deepseek-v4-pro-cheaper:thinking": {
+          "name": "DeepSeek V4 Pro",
+          "limit": {
+            "context": 1000000,
+            "output": 384000
+          },
+          "options": {
+            "reasoningEffort": "max"
+          }
+        }
       }
     }
   },
