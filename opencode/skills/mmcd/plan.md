@@ -1,4 +1,0 @@
-1. Analyze the user's request, gathering context (local and online) to help understanding.
-2. Create MMCD.md with the goal.
-3. Discuss the designs with the user relentlessly about every aspects of the design until reaching a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. For each question, propose multiple choices and provide your recommendations. Ask questions one at a time, and document the decisions in MMCD.md.
-4. Remember that you are going to discuss the design with the user and gradually refine it. Do not attempt to build a complete plan in one go.
