@@ -63,7 +63,8 @@
     },
     "markitdown": {
       "type": "local",
-      "command": ["uvx", "markitdown-mcp"]
+      "command": ["uvx", "markitdown-mcp"],
+      "timeout": 300000
     }
   }
 }
