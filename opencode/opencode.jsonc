@@ -4,6 +4,7 @@
   "small_model": "ollama-cloud/gpt-oss:20b",
   "disabled_providers": ["opencode", "openrouter", "nvidia", "cloudflare-ai-gateway"],
   "default_agent": "plan",
+  "autoupdate": false,
   "share": "disabled",
   "compaction": {
     "auto": false
