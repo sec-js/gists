@@ -48,6 +48,10 @@
       "/tmp/**": "allow",
       "/root/.config/opencode/**": "allow"
     },
+    "skill": {
+      "*": "allow",
+      "customize-opencode": "deny"
+    },
     "context7*": "allow",
     "brave*": "allow",
     "markitdown*": "allow"
