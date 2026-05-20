@@ -21,12 +21,17 @@
         "baseURL": "https://yunwu.ai/v1",
         "apiKey": "{env:YUNWU_API_KEY}"
       }
+    },
+    "google": {
+      "options": {
+        "baseURL": "https://yunwu.ai/v1",
+        "apiKey": "{env:YUNWU_API_KEY}"
+      }
     }
   },
   "agent": {
     "explore": {
-      "description": "Read-only agent backed by a cheap model.",
-      "model": "nano-gpt/zai-org/glm-5:thinking"
+      "description": "Read-only agent backed by a cheap model."
     },
     "general": {
       "description": "General-purpose subagent with write permission."
