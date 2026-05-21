@@ -1,8 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "nano-gpt/zai-org/glm-5.1:thinking",
+  "model": "github-copilot/gpt-5.4-mini",
   "small_model": "ollama-cloud/gpt-oss:20b",
-  "disabled_providers": ["openrouter", "nvidia", "cloudflare-ai-gateway"],
+  "disabled_providers": ["cloudflare-ai-gateway"],
   "default_agent": "plan",
   "autoupdate": false,
   "share": "disabled",
