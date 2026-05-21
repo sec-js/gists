@@ -1,38 +1,57 @@
 ---
 name: vibepage
-description: Create and serve single-file HTML web page on vibe.ylxdzsw.com site. \"vibepage\", \"vibe page\", \"vibe site\" are magical words referring to this skill. Use this skill when user mentions these magical words.
+description: Build and serve web pages on the vibe.ylxdzsw.com site. Magic words referring to this skill\: \"vibepage\", \"vibe page\", \"vibe site\", \"vibesite\".
 ---
 
 ## Vibepage
 
-This skill provides information and guidelines for creating single-file HTML web pages and serving it on vibe.ylxdzsw.com.
+This skill describes how to build web pages and deploy them on `vibe.ylxdzsw.com`.
 
-### First classify the request
+`vibe.ylxdzsw.com` is an Nginx-served static site backed by `/var/www/vibe`, fronted by Cloudflare. It is the canonical place to hand the user a finished web page (or any file the user wants to view in a browser, including PPTX, PDF, images, archives, datasets).
 
-Choose one of these two routes before you start building:
+### Pick a route
 
-1. **Simple static document**: the deliverable is mostly content, especially when markdown already exists or can be produced directly. No client-side state, no filters, no charts that require JavaScript, no app-like interactions.
-2. **Dynamic document / webapp**: the deliverable needs JavaScript, app state, charts, forms, search/filter UI, multi-view interactions, ECharts, or broader asset/application bundling than the markdown script route is meant to handle.
+1. **Simple static document** — content-first markdown, no JS state, no charts, no interactive UI. Use the bundled `markdown-to-html.ts` script directly.
+2. **Dynamic document / webapp** — needs JavaScript, app state, charts, ECharts, forms, search/filter, view switching, animation, or any bundling beyond plain markdown. Set up a `bun` project.
 
-Prefer the simple static route whenever it is sufficient.
+Prefer the simple route whenever it is sufficient.
 
-### Main workflow
+### Where files go on the server
 
-1. Classify the task as either a simple static document or a dynamic document / webapp.
-2. For a simple static document, do not create a dedicated project folder unless the user asks for one or you truly need to preserve intermediate files. Use this skill's bundled `markdown-to-html.ts` script directly.
-3. For a dynamic document / webapp, set up a `bun` project. Latest bun is installed on this server and can be directly used. More information in environment skill.
-4. Build the page following the guidelines later.
-5. For dynamic routes, bundle a single-file HTML with `bun build --compile --target=browser --minify ./index.html --outdir=dist`. [Documents](https://bun.com/docs/bundler/standalone-html).
-6. Put the final file in `/var/www/vibe`. Avoid overwriting existing files, unless it is created by you or instructed by user.
+Two locations matter:
+
+- **`/var/www/vibe/tmp/`** — scratch/iteration area. **Not autoindexed.** Files here are visible only by exact URL. The directory is auto-cleaned: contents older than 30 days are removed daily by `systemd-tmpfiles-clean.timer`.
+- **`/var/www/vibe/`** (the root) — the public, autoindexed area for finalized deliverables.
+
+Always start in `tmp/`. Move to root only when the user says to finalize.
+
+### Versioning convention
+
+While iterating with the user, write to `/var/www/vibe/tmp/<name>-vN.<ext>`, bumping `N` after each meaningful change. The version suffix is the cache-bust mechanism: Cloudflare caches static assets aggressively and there is no purge-by-URL available, so a fresh filename is the simplest way to make sure the user sees the latest version.
+
+When the user asks to finalize:
+
+1. Copy the latest `tmp/<name>-vN.<ext>` to `/var/www/vibe/<name>.<ext>` (suffix stripped).
+2. Leave the older `-vN` files in `tmp/`. The systemd timer reaps them in 30 days. Do not delete by hand.
+
+### Finalization rules for files at the root
+
+The root directory is for **single, self-contained files only**:
+
+- Finalized HTML must inline all CSS, JS, fonts, and images. No external dependencies, no relative links to other files in the root.
+- Finalized PPTX must embed all media (the standard tooling does this).
+- Finalized PDFs are inherently self-contained.
+- A multi-file HTML deck (deck-viewer + per-slide HTML) is **not** allowed at the root. Either bundle into a single HTML file, or finalize as PPTX or PDF instead.
+- Cross-file references between deliverables are allowed only inside `/tmp/` (e.g. an in-progress index page linking to draft sub-reports under `/tmp/`). Once finalized, each root file stands alone.
 
 ### Simple static document route
 
-- Use this route for markdown-first deliverables, especially when the user already has markdown or when you can generate the markdown directly from research.
+- Use this route for markdown-first deliverables, especially when the user already has markdown or you can generate the markdown directly from research.
 - This skill bundles `markdown-to-html.ts`. It reads markdown from `stdin` and writes a full HTML document to `stdout`.
-- The script intentionally keeps the output minimal: rendered markdown HTML, `<title>`, `meta viewport`, and inline CSS only. Do not add extra chrome such as headers, footers, tables of contents, or scaffolding unless the user explicitly wants them in the markdown itself.
-- Internally the script calls Bun's minifying standalone HTML bundler, so linked CSS, KaTeX fonts, syntax-highlighting styles, and local image assets can be inlined into the final single-file HTML.
-- Relative asset paths are resolved from the current working directory. If the markdown refers to local images like `./figure.png`, run the script from the markdown's directory. Absolute filesystem image paths also work.
-- Do not use frontmatter with this route. The script does not parse frontmatter metadata; it treats the markdown as plain markdown content.
+- The script keeps output minimal: rendered markdown HTML, `<title>`, `meta viewport`, and inline CSS only. Do not add headers, footers, tables of contents, or scaffolding unless the user explicitly wants them in the markdown itself.
+- Internally the script uses Bun's minifying standalone HTML bundler, so KaTeX fonts, syntax highlighting styles, and local image assets are inlined into the final single-file HTML.
+- Relative asset paths resolve from the current working directory. If the markdown refers to `./figure.png`, run the script from the markdown's directory. Absolute filesystem paths also work.
+- Do not use frontmatter. The script does not parse frontmatter.
 - Example usage:
 
 ```bash
@@ -42,12 +61,11 @@ cat report.md | bun run <skill-base>/markdown-to-html.ts --theme github --title 
 ```
 
 - Replace `<skill-base>` with this skill's resolved base directory from the loaded skill output.
-- If `--title` is omitted, the script derives the title from the first markdown `# H1` when possible.
-- If `--theme` is omitted, the script defaults to `opencode`. Supported build-time themes are `opencode` and `github`; both include light and dark variants through `prefers-color-scheme`.
-- This route uses `marked`, `marked-katex-extension`, `marked-footnote`, and Shiki. It supports server-side KaTeX rendering, footnotes, inlined KaTeX fonts, and Shiki syntax highlighting for fenced code blocks while still outputting a single standalone HTML file.
-- If you are unsure how a supported Markdown feature should be written, inspect `examples/markdown-features.md`. It is the canonical fixture for headings, emphasis, links, blockquotes, lists, task lists, tables, code fences, KaTeX math, images, captions, collapsible details, and footnotes.
-- Use common `[^label]` footnotes for source citations, bibliography-style references, caveats, and short explanatory notes. The rendered page shows numeric footnote markers even when labels are descriptive.
-- Example footnote usage:
+- If `--title` is omitted, the script derives it from the first markdown `# H1`.
+- If `--theme` is omitted, the script defaults to `opencode`. Supported themes: `opencode`, `github`. Both ship light and dark variants via `prefers-color-scheme`.
+- Features supported: `marked`, `marked-katex-extension`, `marked-footnote`, Shiki syntax highlighting, server-side KaTeX rendering, footnotes, inlined KaTeX fonts.
+- If unsure how a Markdown feature should be written, inspect `examples/markdown-features.md`. It is the canonical fixture for headings, emphasis, links, blockquotes, lists, task lists, tables, code fences, KaTeX math, images, captions, collapsible details, and footnotes.
+- Use `[^label]` footnotes for source citations, bibliography references, caveats, and short explanatory notes. The renderer shows numeric markers even when labels are descriptive.
 
 ```md
 A sourced claim belongs in the body.[^source]
@@ -58,76 +76,77 @@ A sourced claim belongs in the body.[^source]
 [^source]: Company FY2025 annual report, p. 42.
 ```
 
-- Because this route is stdin/stdout based, it is best for markdown-only or markdown-first pages. If you need JavaScript, ECharts, search/filter interactions, complex stateful UI, or broader app behavior, switch to the dynamic route.
+- Because this route is stdin/stdout based, it suits markdown-only or markdown-first pages. For JavaScript, ECharts, search/filter, complex stateful UI, or broader app behavior, switch to the dynamic route.
 
 ### Dynamic document / webapp route
 
-- Use this route when the page genuinely behaves like an app or needs bundling beyond plain markdown rendering.
-- Typical triggers: ECharts, forms, client-side filters, view switching, stateful interactions, animation logic, or application assets/workflows that go beyond what the markdown script route handles.
-- In this route, create a normal bun project, split files cleanly, and build a standalone HTML artifact with `bun build --compile --target=browser`.
+- Use this route when the page genuinely behaves like an app or needs bundling beyond plain markdown.
+- Typical triggers: ECharts, forms, client-side filters, view switching, stateful interactions, animation logic, broader application assets.
+- Set up a normal bun project, split files cleanly, and build a standalone HTML artifact:
 
-### Where to put the project
+```bash
+bun build --compile --target=browser --minify ./index.html --outdir=dist
+```
 
-If the user gives no hint about the place of the project, infer the intent of the user: is this project one-shot or likely to be continually improved?
+- See [Bun's standalone HTML docs](https://bun.com/docs/bundler/standalone-html) for asset handling.
+- The compiled output is a single self-contained HTML, which satisfies the root finalization rule.
 
-If it is a simple static document route, you usually do not need a project folder at all. Use the bundled script directly and write the resulting HTML where needed.
+### Where to put the source files
 
-If it is likely a one-shot project, like when the user ask you to research a product and make a report, or read a paper and summarize insights, then create the project in a folder in /tmp.
+Source layout is independent of where files are deployed. Decide based on lifespan:
 
-If it is more likely part of a bigger project, or otherwise the user may want to preserve it, like when they ask you to build a webapp the involves complex logics that might change in the future, then create the project in your workspace. Check what the workspace is about. If it is likely created just for this project, directly put the files there; otherwise, make a folder in workspace and put files there.
+- **Simple static route**: usually no project folder at all. Run the bundled script directly and write the resulting HTML where needed.
+- **One-shot project** (research a product, summarize a paper): create the project under `/tmp` (the OS tempdir, not the vibe-site tmp).
+- **Likely-iterated project**: create it in the workspace. If the workspace was created just for this project, put files at its root; otherwise make a subfolder.
 
-### Where to deploy the results
+### Server reference
 
-An Nginx server is serving /var/www/vibe at vibe.ylxdzsw.com. The website is protected by Cloudflare and cached. Therefore, when developing the web page, prefer to append -v1 version number and increase after each change when depolying so the user can access the latest version. Deploy the final version without suffix and remove all other versions when the user asks you to finalize.
+For the curious agent, here is what the Nginx configuration actually does on `vibe.ylxdzsw.com`:
 
-Choose a url-safe file name.
+- `/` — autoindexed, serves files from `/var/www/vibe/`.
+- `/tmp/` — autoindex off, serves files from `/var/www/vibe/tmp/` by exact path only. `https://vibe.ylxdzsw.com/tmp/` returns 404.
+- `*.pptx` (anywhere) — 302 redirects to Office Online's embedded viewer, with the file fetched via the `/_raw/` alias. Uploading a PPTX immediately gives a browser-viewable URL, no extra steps.
+- `/_raw/<path>` — alias for `/var/www/vibe/<path>` without the regex location handlers (used by the PPTX redirect target). Agents normally don't link directly to `/_raw/`.
+- Static asset extensions (`.css`, `.js`, images, fonts) get a 4h `Cache-Control` header. HTML and PPTX rely on Cloudflare's defaults.
+- Hidden files (`/.something`) are denied.
 
-### Guidelines
+### Themes for content
 
-- Prefer the simple static document route when markdown is already available or the page is essentially a styled document.
-- Do not create a dedicated project folder for the simple static route unless there is a strong reason.
-- For dynamic routes, split the files in the project and let `bun` bundle them. Avoid operating on a huge single HTML.
-- Prefer introducing libraries with `bun install` only when the dynamic route actually needs them. Avoid linking to external URL.
-- Focus on content, don't overengineer the code.
-- For researched pages, cite non-obvious factual claims with footnotes instead of raw inline URLs. Use concise labels like `[^source]`, `[^paper-smith-2024]`, or `[^data]`; the rendered output will number them automatically.
-- For image citations, prefer a short italic caption directly below the image. If the source needs detail, put the detail in a footnote.
-- Important: do not include any guiding words on constraints in the resulting webpage. For example, if the user ask you to build a webapp without using React, you just build it without React, do not say in the page that it is build without React. The resulting page is a final product, not a progress record.
-- Prefer picking a theme from following, and follow the designs.
-
-### Themes
+Pick a theme based on the deliverable's purpose.
 
 #### Minimal
 
-General, regular reports.
+General-purpose reports.
 
-- Use minimal CSS and decorations.
-- Focus on key messages, avoid general information.
-- Include reference for online-search information.
-- Be detailed on the actual content.
-- This theme fits the simple static document route especially well.
+- Minimal CSS and decorations.
+- Focus on key messages; skip boilerplate.
+- Cite online-search information.
+- Be detailed on actual content.
+- Fits the simple static route especially well.
 
 #### Academic
 
-Academic reports. Use this theme if it involves math or academic papers.
+Reports involving math or academic-paper-like rigor.
 
 - Organize like a short paper.
-- Be grounded and cite any source of info with footnotes.
-- The simple static markdown route can render math with `KaTeX` now, so use the dynamic route only when math is part of a more interactive application.
-- Avoid color gradient.
+- Cite every source with footnotes.
+- The simple static route can render KaTeX, so reach for the dynamic route only when math is part of an interactive application.
+- Avoid color gradients.
 
 #### Business
 
-McKinsey style slides-like business report.
+McKinsey-style report.
 
-- If the page needs animated plots or dashboards, use the dynamic route and `Echarts`.
-- Pick either a vibrate color plate based on #CF0A2C, or a professional one based mostly on #003087 and #C9A227.
-- Be high-density on information. It is not used for presentation or advertisement, but for cooperational reports. Every screen should be full of actual information (except for the title page).
-- It should generally be a slide-style, but do not have to be actual slide decks. Basically, it is still a continuously scrollable webpage that displays nicely on mobile, but the content orgnization is divided as pages and should assume the report to pause on self-contained screens that fully describes an idea without scrolling back and forth.
-- Highlight key ideas for ADHD readers, while containing all details to keep high information density.
+- For animated plots or dashboards, use the dynamic route with `ECharts`.
+- Use either a vibrant palette anchored on `#CF0A2C`, or a professional palette mostly on `#003087` and `#C9A227`.
+- High information density. These are cooperative reports, not advertisements; every screen carries actual content (the title page is the only exception).
+- A scrollable webpage that reads cleanly on mobile, but content is organized as self-contained "screens" — each idea fully visible without scrolling back and forth.
+- Highlight key ideas for ADHD readers while keeping all detail for high density.
 
-### Quality Control
+### Quality control
 
-- Use agent-browser to take screenshots to verify the layout and rendering.
-- Information is the key. Every paragraph and figure should convey an actual, interesting, non-trivial idea. Avoid generic transition words.
-- Be detailed. Extensively collect information, thoroughly brainstorm ideas, and rigorously verify every claim.
-- IMPORTANT: Do not include requirements of the research or report in the resulting page.
+- Use the `agent-browser` skill to screenshot and verify layout and rendering.
+- Information is the priority. Every paragraph and figure should convey an actual, non-trivial idea. Avoid generic transition prose.
+- Be detailed: collect information widely, brainstorm thoroughly, verify every claim.
+- Do not include guidance, constraints, or process notes inside the rendered page. The deliverable is a final product, not a progress record. (For example, if the user asked you to build without React, just build it without React; do not say so on the page.)
+- Pick a URL-safe filename. Lower-case, dashes, no spaces.
