@@ -63,6 +63,11 @@
       "type": "local",
       "command": ["npx", "@brave/brave-search-mcp-server", "--enabled-tools", "brave_web_search"]
     },
+    "gmail": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://gmailmcp.googleapis.com/mcp/v1"
+    },
     "markitdown": {
       "type": "local",
       "command": ["uvx", "markitdown-mcp"],
