@@ -46,10 +46,6 @@
       "/tmp/**": "allow",
       "/root/.config/opencode/**": "allow"
     },
-    "skill": {
-      "*": "allow",
-      "customize-opencode": "deny"
-    },
     "context7*": "allow",
     "brave*": "allow",
     "markitdown*": "allow"
@@ -63,15 +59,15 @@
       "type": "local",
       "command": ["npx", "@brave/brave-search-mcp-server", "--enabled-tools", "brave_web_search"]
     },
-    "gmail": {
-      "enabled": false,
-      "type": "remote",
-      "url": "https://gmailmcp.googleapis.com/mcp/v1"
-    },
     "markitdown": {
       "type": "local",
       "command": ["uvx", "markitdown-mcp"],
       "timeout": 300000
+    },
+    "gmail": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://gmailmcp.googleapis.com/mcp/v1"
     }
   }
 }
