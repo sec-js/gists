@@ -67,7 +67,11 @@
     "gmail": {
       "enabled": false,
       "type": "remote",
-      "url": "https://gmailmcp.googleapis.com/mcp/v1"
+      "url": "https://gmailmcp.googleapis.com/mcp/v1",
+      "oauth": {
+        "clientId": "{env:GMAIL_CLIENT_ID}",
+        "clientSecret": "{env:GMAIL_CLIENT_SECRET}"
+      }
     }
   }
 }
