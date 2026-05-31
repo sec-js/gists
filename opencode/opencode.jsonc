@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "github-copilot/gpt-5.4-mini",
+  "model": "opencode-go/kimi-k2.6",
   "small_model": "ollama-cloud/gpt-oss:20b",
   "disabled_providers": ["openrouter", "nvidia", "cloudflare-ai-gateway"],
   "default_agent": "plan",
