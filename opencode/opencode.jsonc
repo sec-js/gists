@@ -26,6 +26,110 @@
         "baseURL": "https://yunwu.ai/v1",
         "apiKey": "{env:YUNWU_API_KEY}"
       }
+    },
+    "rc-claude-aws": {
+      "npm": "@ai-sdk/anthropic",
+      "name": "RC Claude awsq",
+      "options": {
+        "baseURL": "https://right.codes/claude-aws",
+        "apiKey": "{env:RC_API_KEY}"
+      },
+      "models": {
+        "claude-opus-4-6": {
+          "name": "Claude Opus 4.6",
+          "cost": { "input": 5, "output": 25, "cache_read": 0.5, "cache_write": 6.25 },
+          "limit": { "context": 1000000, "output": 128000 },
+          "reasoning": true,
+          "temperature": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        },
+        "claude-opus-4-8": {
+          "name": "Claude Opus 4.8",
+          "cost": { "input": 5, "output": 25, "cache_read": 0.5, "cache_write": 6.25 },
+          "limit": { "context": 1000000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        },
+        "claude-sonnet-4-6": {
+          "name": "Claude Sonnet 4.6",
+          "cost": { "input": 3, "output": 15, "cache_read": 0.3, "cache_write": 3.75 },
+          "limit": { "context": 1000000, "output": 64000 },
+          "reasoning": true,
+          "temperature": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        }
+      }
+    },
+    "rc-codex": {
+      "npm": "@ai-sdk/openai",
+      "name": "RC Codex 日抛plus",
+      "options": {
+        "baseURL": "https://right.codes/codex/v1",
+        "apiKey": "{env:RC_API_KEY}"
+      },
+      "models": {
+        "gpt-5.4": {
+          "name": "GPT-5.4",
+          "cost": { "input": 2.5, "output": 15, "cache_read": 0.25 },
+          "limit": { "context": 1050000, "input": 922000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        },
+        "gpt-5.4-mini": {
+          "name": "GPT-5.4 mini",
+          "cost": { "input": 0.75, "output": 4.5, "cache_read": 0.075 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image"] }
+        },
+        "gpt-5.5": {
+          "name": "GPT-5.5",
+          "cost": { "input": 5, "output": 30, "cache_read": 0.5 },
+          "limit": { "context": 1050000, "input": 922000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        }
+      }
+    },
+    "rc-codex-pro": {
+      "npm": "@ai-sdk/openai",
+      "name": "RC Codex 正价",
+      "options": {
+        "baseURL": "https://right.codes/codex-pro/v1",
+        "apiKey": "{env:RC_API_KEY}"
+      },
+      "models": {
+        "gpt-5.4": {
+          "name": "GPT-5.4",
+          "cost": { "input": 2.5, "output": 15, "cache_read": 0.25 },
+          "limit": { "context": 1050000, "input": 922000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        },
+        "gpt-5.4-mini": {
+          "name": "GPT-5.4 mini",
+          "cost": { "input": 0.75, "output": 4.5, "cache_read": 0.075 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image"] }
+        },
+        "gpt-5.5": {
+          "name": "GPT-5.5",
+          "cost": { "input": 5, "output": 30, "cache_read": 0.5 },
+          "limit": { "context": 1050000, "input": 922000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        }
+      }
     }
   },
   "agent": {
