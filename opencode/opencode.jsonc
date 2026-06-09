@@ -68,7 +68,8 @@
       "name": "RC Codex 日抛plus",
       "options": {
         "baseURL": "https://right.codes/codex/v1",
-        "apiKey": "{env:RC_API_KEY}"
+        "apiKey": "{env:RC_API_KEY}",
+        "setCacheKey": true
       },
       "models": {
         "gpt-5.4": {
@@ -102,7 +103,8 @@
       "name": "RC Codex 正价",
       "options": {
         "baseURL": "https://right.codes/codex-pro/v1",
-        "apiKey": "{env:RC_API_KEY}"
+        "apiKey": "{env:RC_API_KEY}",
+        "setCacheKey": true
       },
       "models": {
         "gpt-5.4": {
