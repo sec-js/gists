@@ -27,6 +27,22 @@
         "apiKey": "{env:YUNWU_API_KEY}"
       }
     },
+    "anyrouter": {
+      "npm": "@ai-sdk/anthropic",
+      "name": "Anyrouter",
+      "options": {
+        "baseURL": "https://anyrouter.top",
+        "apiKey": "{env:ANY_ROUTER_API_KEY}"
+      },
+      "claude-opus-4-6": {
+          "name": "Claude Opus 4.6",
+          "cost": { "input": 5, "output": 25, "cache_read": 0.5, "cache_write": 6.25 },
+          "limit": { "context": 200000, "output": 8192 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image"] }
+        },
+    },
     "rc-claude-aws": {
       "npm": "@ai-sdk/anthropic",
       "name": "RC Claude awsq",
@@ -38,16 +54,15 @@
         "claude-opus-4-6": {
           "name": "Claude Opus 4.6",
           "cost": { "input": 5, "output": 25, "cache_read": 0.5, "cache_write": 6.25 },
-          "limit": { "context": 1000000, "output": 128000 },
+          "limit": { "context": 200000, "output": 64000 },
           "reasoning": true,
-          "temperature": true,
           "attachment": true,
           "modalities": { "input": ["text", "image", "pdf"] }
         },
         "claude-opus-4-8": {
           "name": "Claude Opus 4.8",
           "cost": { "input": 5, "output": 25, "cache_read": 0.5, "cache_write": 6.25 },
-          "limit": { "context": 1000000, "output": 128000 },
+          "limit": { "context": 200000, "output": 64000 },
           "reasoning": true,
           "attachment": true,
           "modalities": { "input": ["text", "image", "pdf"] }
@@ -55,9 +70,8 @@
         "claude-sonnet-4-6": {
           "name": "Claude Sonnet 4.6",
           "cost": { "input": 3, "output": 15, "cache_read": 0.3, "cache_write": 3.75 },
-          "limit": { "context": 1000000, "output": 64000 },
+          "limit": { "context": 200000, "output": 64000 },
           "reasoning": true,
-          "temperature": true,
           "attachment": true,
           "modalities": { "input": ["text", "image", "pdf"] }
         }
@@ -75,7 +89,7 @@
         "gpt-5.4": {
           "name": "GPT-5.4",
           "cost": { "input": 2.5, "output": 15, "cache_read": 0.25 },
-          "limit": { "context": 1050000, "input": 922000, "output": 128000 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
           "reasoning": true,
           "attachment": true,
           "modalities": { "input": ["text", "image", "pdf"] }
@@ -91,7 +105,7 @@
         "gpt-5.5": {
           "name": "GPT-5.5",
           "cost": { "input": 5, "output": 30, "cache_read": 0.5 },
-          "limit": { "context": 1050000, "input": 922000, "output": 128000 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
           "reasoning": true,
           "attachment": true,
           "modalities": { "input": ["text", "image", "pdf"] }
@@ -110,7 +124,7 @@
         "gpt-5.4": {
           "name": "GPT-5.4",
           "cost": { "input": 2.5, "output": 15, "cache_read": 0.25 },
-          "limit": { "context": 1050000, "input": 922000, "output": 128000 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
           "reasoning": true,
           "attachment": true,
           "modalities": { "input": ["text", "image", "pdf"] }
@@ -126,7 +140,7 @@
         "gpt-5.5": {
           "name": "GPT-5.5",
           "cost": { "input": 5, "output": 30, "cache_read": 0.5 },
-          "limit": { "context": 1050000, "input": 922000, "output": 128000 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
           "reasoning": true,
           "attachment": true,
           "modalities": { "input": ["text", "image", "pdf"] }
