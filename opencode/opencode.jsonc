@@ -150,7 +150,8 @@
     "external_directory": {
       "*": "ask",
       "/tmp/**": "allow",
-      "/root/.config/opencode/**": "allow"
+      "/root/.config/opencode/**": "allow",
+      "/var/www/vibe/tmp/**": "allow"
     },
     "context7*": "allow",
     "brave*": "allow",
