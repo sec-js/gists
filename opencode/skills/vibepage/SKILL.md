@@ -1,6 +1,6 @@
 ---
 name: vibepage
-description: Build and serve web pages on the vibe.ylxdzsw.com site. Magic words referring to this skill\: \"vibepage\", \"vibe page\", \"vibe site\", \"vibesite\".
+description: "Build and serve web pages on the vibe.ylxdzsw.com site. Magic words referring to this skill: vibepage, vibe page, vibe site, vibesite."
 ---
 
 ## Vibepage
