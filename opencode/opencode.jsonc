@@ -31,7 +31,7 @@
       "npm": "@ai-sdk/anthropic",
       "name": "Anyrouter",
       "options": {
-        "baseURL": "https://anyrouter.top",
+        "baseURL": "https://anyrouter.top/v1",
         "apiKey": "{env:ANY_ROUTER_API_KEY}"
       },
       "models": {
@@ -42,14 +42,6 @@
           "reasoning": true,
           "attachment": true,
           "modalities": { "input": ["text", "image"] }
-        },
-        "gpt-5.5": {
-          "name": "GPT-5.5",
-          "cost": { "input": 5, "output": 30, "cache_read": 0.5 },
-          "limit": { "context": 400000, "input": 272000, "output": 128000 },
-          "reasoning": true,
-          "attachment": true,
-          "modalities": { "input": ["text", "image", "pdf"] }
         }
       }
     },
@@ -57,7 +49,7 @@
       "npm": "@ai-sdk/anthropic",
       "name": "RC Claude awsq",
       "options": {
-        "baseURL": "https://right.codes/claude-aws",
+        "baseURL": "https://right.codes/claude-aws/v1",
         "apiKey": "{env:RC_API_KEY}"
       },
       "models": {
