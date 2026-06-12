@@ -1,13 +1,8 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode-go/deepseek-v4-pro",
+  "model": "opencode-go/minimax-m3",
   "small_model": "google/gemini-flash-lite-latest",
-  "disabled_providers": [
-    "ollama-cloud",
-    "openrouter",
-    "nvidia",
-    "cloudflare-ai-gateway"
-  ],
+  "disabled_providers": ["ollama-cloud", "openrouter", "nvidia", "cloudflare-ai-gateway" ],
   "default_agent": "plan",
   "autoupdate": false,
   "share": "disabled",
@@ -28,17 +23,17 @@
       }
     },
     "anyrouter": {
-      "npm": "@ai-sdk/anthropic",
+      "npm": "@ai-sdk/openai-compatible",
       "name": "Anyrouter",
       "options": {
         "baseURL": "https://anyrouter.top/v1",
         "apiKey": "{env:ANY_ROUTER_API_KEY}"
       },
       "models": {
-        "claude-opus-4-7": {
-          "name": "Claude Opus 4.7",
-          "cost": { "input": 5, "output": 25, "cache_read": 0.5, "cache_write": 6.25 },
-          "limit": { "context": 200000, "output": 8192 },
+        "gpt-5.5": {
+          "name": "GPT-5.5",
+          "cost": { "input": 5, "output": 30, "cache_read": 0.5 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
           "reasoning": true,
           "attachment": true,
           "modalities": { "input": ["text", "image"] }
