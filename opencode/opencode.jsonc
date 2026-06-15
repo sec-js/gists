@@ -22,8 +22,14 @@
         "apiKey": "{env:YUNWU_API_KEY}"
       }
     },
+    "moonshotai": {
+      "options": {
+        "baseURL": "https://workers-ai-proxy.2627d7y1.workers.dev/v1",
+        "apiKey": "sk-kimi-f51d9b4e972ab61678d3c646f191917929b4a879aa26108e"
+      }
+    },
     "anyrouter": {
-      "npm": "@ai-sdk/openai-compatible",
+      "npm": "@ai-sdk/openai",
       "name": "Anyrouter",
       "options": {
         "baseURL": "https://anyrouter.top/v1",
