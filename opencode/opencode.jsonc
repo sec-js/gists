@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode-go/minimax-m3",
+  "model": "opencode-go/deepseek-v4-pro",
   "small_model": "google/gemini-flash-lite-latest",
   "disabled_providers": ["ollama-cloud", "openrouter", "nvidia", "cloudflare-ai-gateway" ],
   "default_agent": "plan",
@@ -10,40 +10,45 @@
     "auto": false
   },
   "provider": {
-    "openai": {
-      "options": {
-        "baseURL": "https://yunwu.ai/v1",
-        "apiKey": "{env:YUNWU_API_KEY}"
-      }
-    },
-    "anthropic": {
-      "options": {
-        "baseURL": "https://yunwu.ai/v1",
-        "apiKey": "{env:YUNWU_API_KEY}"
-      }
-    },
-    "moonshotai": {
-      "options": {
-        "baseURL": "https://workers-ai-proxy.2627d7y1.workers.dev/v1",
-        "apiKey": "sk-kimi-f51d9b4e972ab61678d3c646f191917929b4a879aa26108e"
-      }
-    },
-    "anyrouter": {
+    "yunwu-codex": {
       "npm": "@ai-sdk/openai",
-      "name": "Anyrouter",
+      "name": "Yunwu Codex",
       "options": {
-        "baseURL": "https://anyrouter.top/v1",
-        "apiKey": "{env:ANY_ROUTER_API_KEY}"
+        "baseURL": "https://yunwu.ai/v1",
+        "apiKey": "{env:YUNWU_API_KEY}",
+        "setCacheKey": true
       },
       "models": {
+        "gpt-5.4": {
+          "name": "GPT-5.4",
+          "cost": { "input": 2.5, "output": 15, "cache_read": 0.25 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        },
+        "gpt-5.4-mini": {
+          "name": "GPT-5.4 mini",
+          "cost": { "input": 0.75, "output": 4.5, "cache_read": 0.075 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image"] }
+        },
         "gpt-5.5": {
           "name": "GPT-5.5",
           "cost": { "input": 5, "output": 30, "cache_read": 0.5 },
           "limit": { "context": 400000, "input": 272000, "output": 128000 },
           "reasoning": true,
           "attachment": true,
-          "modalities": { "input": ["text", "image"] }
+          "modalities": { "input": ["text", "image", "pdf"] }
         }
+      }
+    },
+    "anthropic": {
+      "options": {
+        "baseURL": "https://yunwu.ai/v1",
+        "apiKey": "{env:YUNWU_API_KEY}"
       }
     },
     "rc-claude-aws": {
@@ -112,6 +117,33 @@
           "reasoning": true,
           "attachment": true,
           "modalities": { "input": ["text", "image", "pdf"] }
+        }
+      }
+    },
+    "xiaotian": {
+      "npm": "@ai-sdk/openai",
+      "name": "Xiaotian",
+      "options": {
+        "baseURL": "https://workers-ai-proxy.2627d7y1.workers.dev/v1",
+        "apiKey": "sk-kimi-f51d9b4e972ab61678d3c646f191917929b4a879aa26108e",
+        "setCacheKey": true
+      },
+      "models": {
+        "kimi-k2.7-code": {
+          "name": "kimi-k2.7-code",
+          "cost": { "input": 0.95, "output": 4.00, "cache_read": 0.19 },
+          "limit": { "context": 262144, "input": 262144, "output": 32768 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image"] }
+        },
+        "glm-5.2": {
+          "name": "glm-5.2",
+          "cost": { "input": 1.40, "output": 4.40, "cache_read": 0.26 },
+          "limit": { "context": 256000, "input": 256000, "output": 131072 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text"] }
         }
       }
     }
