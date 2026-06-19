@@ -119,33 +119,6 @@
           "modalities": { "input": ["text", "image", "pdf"] }
         }
       }
-    },
-    "xiaotian": {
-      "npm": "@ai-sdk/openai",
-      "name": "Xiaotian",
-      "options": {
-        "baseURL": "https://workers-ai-proxy.2627d7y1.workers.dev/v1",
-        "apiKey": "sk-kimi-f51d9b4e972ab61678d3c646f191917929b4a879aa26108e",
-        "setCacheKey": true
-      },
-      "models": {
-        "kimi-k2.7-code": {
-          "name": "kimi-k2.7-code",
-          "cost": { "input": 0.95, "output": 4.00, "cache_read": 0.19 },
-          "limit": { "context": 262144, "input": 262144, "output": 32768 },
-          "reasoning": true,
-          "attachment": true,
-          "modalities": { "input": ["text", "image"] }
-        },
-        "glm-5.2": {
-          "name": "glm-5.2",
-          "cost": { "input": 1.40, "output": 4.40, "cache_read": 0.26 },
-          "limit": { "context": 256000, "input": 256000, "output": 131072 },
-          "reasoning": true,
-          "attachment": true,
-          "modalities": { "input": ["text"] }
-        }
-      }
     }
   },
   "agent": {
