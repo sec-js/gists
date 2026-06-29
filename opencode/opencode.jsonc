@@ -45,6 +45,76 @@
         }
       }
     },
+    "cr-codex": {
+      "npm": "@ai-sdk/openai",
+      "name": "CR Codex",
+      "options": {
+        "baseURL": "https://cdn.coderelay.cn/v1",
+        "apiKey": "{env:CR_CODEX_API_KEY}",
+        "setCacheKey": true
+      },
+      "models": {
+        "gpt-5.4": {
+          "name": "GPT-5.4",
+          "cost": { "input": 2.5, "output": 15, "cache_read": 0.25 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        },
+        "gpt-5.4-mini": {
+          "name": "GPT-5.4 mini",
+          "cost": { "input": 0.75, "output": 4.5, "cache_read": 0.075 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image"] }
+        },
+        "gpt-5.5": {
+          "name": "GPT-5.5",
+          "cost": { "input": 5, "output": 30, "cache_read": 0.5 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        }
+      }
+    },
+    "cr-codex-plus": {
+      "npm": "@ai-sdk/openai",
+      "name": "CR Codex Plus",
+      "options": {
+        "baseURL": "https://cdn.coderelay.cn/v1",
+        "apiKey": "{env:CR_CODEX_PLUS_API_KEY}",
+        "setCacheKey": true
+      },
+      "models": {
+        "gpt-5.4": {
+          "name": "GPT-5.4",
+          "cost": { "input": 2.5, "output": 15, "cache_read": 0.25 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        },
+        "gpt-5.4-mini": {
+          "name": "GPT-5.4 mini",
+          "cost": { "input": 0.75, "output": 4.5, "cache_read": 0.075 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image"] }
+        },
+        "gpt-5.5": {
+          "name": "GPT-5.5",
+          "cost": { "input": 5, "output": 30, "cache_read": 0.5 },
+          "limit": { "context": 400000, "input": 272000, "output": 128000 },
+          "reasoning": true,
+          "attachment": true,
+          "modalities": { "input": ["text", "image", "pdf"] }
+        }
+      }
+    },
     "yunwu-claude": {
       "npm": "@ai-sdk/anthropic",
       "name": "Yunwu Claude",
